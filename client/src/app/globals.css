@@ -1,2 +1,7 @@
 @import "tailwindcss";
 
+:root {
+    --onyx: #151414;
+    --blue-energy: #468FEA;
+    --paper-bg: #FFF6EB;
+}
