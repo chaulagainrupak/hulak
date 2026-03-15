@@ -1,0 +1,11 @@
+---
+import FirstLoadPage from "../components/FirstLoadPage";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import LetterWriter from "../components/LetterWriter.tsx";
+---
+
+<BaseLayout>
+  <FirstLoadPage client:load />
+  <LetterWriter client:only/>
+</BaseLayout>

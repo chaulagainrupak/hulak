@@ -1,13 +1,15 @@
-import React from "react";
-
 type LetterOutlineProps = {
   children: React.ReactNode;
   strokeWidth?: number;
+  className?: string;
+  paperClassName?: string;
 };
 
 export const LetterOutline = ({
   children,
   strokeWidth = 12,
+  className = "",
+  paperClassName = "",
 }: LetterOutlineProps) => {
   const red = "#F45D52";
   const white = "#FEE4C2";
@@ -27,13 +29,17 @@ export const LetterOutline = ({
 
   return (
     <div
-      className="relative inline-block rounded-md"
+      className={`relative rounded-md ${className}`}
       style={{
         padding: strokeWidth,
-        background: background,
+        background,
       }}
     >
-      <div className="relative bg-[var(--paper-bg)] rounded-md p-6">{children}</div>
+      <div
+        className={`relative bg-[var(--paper-bg)] rounded-md ${paperClassName}`}
+      >
+        {children}
+      </div>
     </div>
   );
 };

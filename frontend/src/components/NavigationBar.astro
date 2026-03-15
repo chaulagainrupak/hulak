@@ -1,0 +1,60 @@
+---
+
+---
+
+<div class="w-full flex justify-between p-2 px-6 z-[1000]">
+  <div id="hulak-logo" class="cursor-pointer transition-transform duration-200">
+    <a class="font-bold text-3xl" href="/"
+      >हुलाक
+      <div class="text-gray-400 italic text-xs">/hu-laak/ Post Office</div>
+    </a>
+  </div>
+
+  <div class="hidden md:flex flex-col items-center justify-center text-center">
+    <div class="text-sm tracking-wide text-gray-700">
+      Digital Post
+    </div>
+
+    <div class="text-[10px] text-gray-400 italic">Write something meaningful</div>
+  </div>
+
+  <div class="flex flex-col">
+    <div class="flex">
+      <a href="https://ko-fi.com/R5R21CWC4P" target="_blank">
+        <img
+          class="h-[36px]"
+          src="https://storage.ko-fi.com/cdn/kofi5.png?v=6"
+          alt="Buy Me a Coffee at ko-fi.com"
+        />
+      </a>
+
+      <a href="https://github.com/chaulagainrupak" target="_blank" class="mx-2">
+        <img
+          class="w-[36px] rounded-2xl"
+          src="https://avatars.githubusercontent.com/u/86196413?v=2"
+          alt="Rupak Chaulagain's Github profile"
+        />
+      </a>
+    </div>
+
+    <div class="text-gray-400 italic text-xs">
+      <a href="https://chaulagainrupak.com.np">Developer: Rupak Chaulagain</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const logo = document.getElementById("hulak-logo")!;
+
+  function getRandomRotation() {
+    return Math.floor(Math.random() * 10) - 5;
+  }
+
+  logo.addEventListener("mouseenter", () => {
+    logo.style.transform = `rotate(${getRandomRotation()}deg)`;
+  });
+
+  logo.addEventListener("mouseleave", () => {
+    logo.style.transform = "rotate(0deg)";
+  });
+</script>

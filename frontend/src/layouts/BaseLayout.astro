@@ -1,0 +1,21 @@
+---
+import "../styles/global.css";
+import NavigationBar from "../components/NavigationBar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hulak — Send Digital Letters & Messages</title>
+  </head>
+
+  <body class="bg-[var(--wheat)] flex flex-col min-h-screen">
+    <NavigationBar />
+
+    <main class="p-2 px-6">
+      <slot />
+    </main>
+  </body>
+</html>

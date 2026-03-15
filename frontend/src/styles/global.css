@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Libre+Baskerville&family=Playfair+Display&family=Caveat&family=Patrick+Hand&family=Inter&family=EB+Garamond&family=Spectral:wght@400;600&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --paper-bg: #FFFDF7;
+  --wheat: #ffefd5;
+  --onyx: #2C2C2A;
+  --blue-energy: #666CA3;
+  --red-stamp: #F45D52;
+}
+.ql-editor {
+  font-size: 24px;
+  line-height: 1.8;
+  min-height: 100%;
+  font-family: "Crimson Pro", serif;
+}
+
+.ql-font-crimson { font-family: "Crimson Pro", serif; }
+.ql-font-baskerville { font-family: "Libre Baskerville", serif; }
+.ql-font-playfair { font-family: "Playfair Display", serif; }
+.ql-font-caveat { font-family: "Caveat", cursive; }
+.ql-font-patrick { font-family: "Patrick Hand", cursive; }
+.ql-font-inter { font-family: "Inter", sans-serif; }
+.ql-font-garamond { font-family: "EB Garamond", serif; }
+.ql-font-spectral { font-family: "Spectral", serif; }
+
+.ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid #ddd !important;
+  font-size: 16px;
+}
+
+.ql-container {
+  border: none !important;
+}
+
+.ql-picker-label {
+  font-size: 16px;
+}
+
+.ql-picker-item {
+  font-size: 16px;
+}
+
+.ql-picker.ql-font {
+  width: max-content
+   !important; 
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label {
+  padding-right: 22px;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-options {
+  width: max-content;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label::before {
+  content: "Classic Letter";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="crimson"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="crimson"]::before {
+  content: "Classic Letter";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="baskerville"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="baskerville"]::before {
+  content: "Book Letter";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="playfair"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="playfair"]::before {
+  content: "Elegant Letter";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="caveat"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="caveat"]::before {
+  content: "Handwritten";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="patrick"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="patrick"]::before {
+  content: "Friendly Note";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="inter"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="inter"]::before {
+  content: "Modern Message";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="garamond"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="garamond"]::before {
+  content: "Traditional Letter";
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="spectral"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="spectral"]::before {
+  content: "Story Letter";
+}
+
+.ql-picker-item[data-value="crimson"] { font-family: "Crimson Pro", serif; }
+.ql-picker-item[data-value="baskerville"] { font-family: "Libre Baskerville", serif; }
+.ql-picker-item[data-value="playfair"] { font-family: "Playfair Display", serif; }
+.ql-picker-item[data-value="caveat"] { font-family: "Caveat", cursive; }
+.ql-picker-item[data-value="patrick"] { font-family: "Patrick Hand", cursive; }
+.ql-picker-item[data-value="inter"] { font-family: "Inter", sans-serif; }
+.ql-picker-item[data-value="garamond"] { font-family: "EB Garamond", serif; }
+.ql-picker-item[data-value="spectral"] { font-family: "Spectral", serif; }
+
+
+.ql-picker.ql-font .ql-picker-label[data-value="crimson"] {
+  font-family: "Crimson Pro", serif;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="baskerville"] {
+  font-family: "Libre Baskerville", serif;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="playfair"] {
+  font-family: "Playfair Display", serif;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="caveat"] {
+  font-family: "Caveat", cursive;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="patrick"] {
+  font-family: "Patrick Hand", cursive;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="inter"] {
+  font-family: "Inter", sans-serif;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="garamond"] {
+  font-family: "EB Garamond", serif;
+}
+
+.ql-picker.ql-font .ql-picker-label[data-value="spectral"] {
+  font-family: "Spectral", serif;
+}
+
