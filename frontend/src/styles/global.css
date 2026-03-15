@@ -3,12 +3,17 @@
 @import "tailwindcss";
 
 :root {
-  --paper-bg: #FFFDF7;
+  --paper-bg: #fffdf7;
   --wheat: #ffefd5;
-  --onyx: #2C2C2A;
-  --blue-energy: #666CA3;
-  --red-stamp: #F45D52;
+  --onyx: #2c2c2a;
+  --blue-energy: #666ca3;
+  --red-stamp: #f45d52;
 }
+
+.nav-head {
+  font-family: "Libre Baskerville", serif;
+}
+
 .ql-editor {
   font-size: 24px;
   line-height: 1.8;
@@ -16,14 +21,30 @@
   font-family: "Crimson Pro", serif;
 }
 
-.ql-font-crimson { font-family: "Crimson Pro", serif; }
-.ql-font-baskerville { font-family: "Libre Baskerville", serif; }
-.ql-font-playfair { font-family: "Playfair Display", serif; }
-.ql-font-caveat { font-family: "Caveat", cursive; }
-.ql-font-patrick { font-family: "Patrick Hand", cursive; }
-.ql-font-inter { font-family: "Inter", sans-serif; }
-.ql-font-garamond { font-family: "EB Garamond", serif; }
-.ql-font-spectral { font-family: "Spectral", serif; }
+.ql-font-crimson {
+  font-family: "Crimson Pro", serif;
+}
+.ql-font-baskerville {
+  font-family: "Libre Baskerville", serif;
+}
+.ql-font-playfair {
+  font-family: "Playfair Display", serif;
+}
+.ql-font-caveat {
+  font-family: "Caveat", cursive;
+}
+.ql-font-patrick {
+  font-family: "Patrick Hand", cursive;
+}
+.ql-font-inter {
+  font-family: "Inter", sans-serif;
+}
+.ql-font-garamond {
+  font-family: "EB Garamond", serif;
+}
+.ql-font-spectral {
+  font-family: "Spectral", serif;
+}
 
 .ql-toolbar {
   border: none !important;
@@ -44,8 +65,7 @@
 }
 
 .ql-picker.ql-font {
-  width: max-content
-   !important; 
+  width: max-content !important;
 }
 
 .ql-snow .ql-picker.ql-font .ql-picker-label {
@@ -100,15 +120,30 @@
   content: "Story Letter";
 }
 
-.ql-picker-item[data-value="crimson"] { font-family: "Crimson Pro", serif; }
-.ql-picker-item[data-value="baskerville"] { font-family: "Libre Baskerville", serif; }
-.ql-picker-item[data-value="playfair"] { font-family: "Playfair Display", serif; }
-.ql-picker-item[data-value="caveat"] { font-family: "Caveat", cursive; }
-.ql-picker-item[data-value="patrick"] { font-family: "Patrick Hand", cursive; }
-.ql-picker-item[data-value="inter"] { font-family: "Inter", sans-serif; }
-.ql-picker-item[data-value="garamond"] { font-family: "EB Garamond", serif; }
-.ql-picker-item[data-value="spectral"] { font-family: "Spectral", serif; }
-
+.ql-picker-item[data-value="crimson"] {
+  font-family: "Crimson Pro", serif;
+}
+.ql-picker-item[data-value="baskerville"] {
+  font-family: "Libre Baskerville", serif;
+}
+.ql-picker-item[data-value="playfair"] {
+  font-family: "Playfair Display", serif;
+}
+.ql-picker-item[data-value="caveat"] {
+  font-family: "Caveat", cursive;
+}
+.ql-picker-item[data-value="patrick"] {
+  font-family: "Patrick Hand", cursive;
+}
+.ql-picker-item[data-value="inter"] {
+  font-family: "Inter", sans-serif;
+}
+.ql-picker-item[data-value="garamond"] {
+  font-family: "EB Garamond", serif;
+}
+.ql-picker-item[data-value="spectral"] {
+  font-family: "Spectral", serif;
+}
 
 .ql-picker.ql-font .ql-picker-label[data-value="crimson"] {
   font-family: "Crimson Pro", serif;
@@ -141,4 +176,3 @@
 .ql-picker.ql-font .ql-picker-label[data-value="spectral"] {
   font-family: "Spectral", serif;
 }
-

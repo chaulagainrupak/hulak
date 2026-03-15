@@ -29,7 +29,7 @@ export const LetterOutline = ({
 
   return (
     <div
-      className={`relative rounded-md ${className}`}
+      className={`relative rounded-md shadow-xl ${className}`}
       style={{
         padding: strokeWidth,
         background,

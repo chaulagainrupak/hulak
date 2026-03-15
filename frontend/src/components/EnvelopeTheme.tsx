@@ -350,6 +350,9 @@ export default function EnvelopePreview({
   const displayOccasion =
     occasion === "Just because" && customOccasionLabel ? customOccasionLabel : occasion;
 
+  const displayReceiver = receiverName || "Jane Doe";
+  const displaySender   = senderName   || "John Doe";
+
   // All sizes scale with container width
   const px = (frac: number) => `${w * frac}px`;
 
@@ -416,41 +419,43 @@ export default function EnvelopePreview({
           <div className={`flex flex-col h-full ${layoutAlign}`}>
 
             {/* TO */}
-            {receiverName && (
-              <div style={{ marginBottom: px(0.005) }}>
-                <p className="flex items-center uppercase font-semibold"
-                  style={{ color: theme.labelColor, fontFamily: theme.labelFont,
-                    fontSize: labelSize, letterSpacing: "0.16em",
-                    marginBottom: px(0.003), gap: px(0.007), opacity: 0.8 }}>
-                  <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: labelSize }} />
-                  to
-                </p>
-                <p className="leading-none truncate"
-                  style={{ color: theme.toColor, fontFamily: theme.toFont,
-                    fontSize: toSize, letterSpacing: "-0.02em", fontWeight: 700 }}>
-                  {receiverName}
-                </p>
-              </div>
-            )}
+            <div style={{ marginBottom: px(0.005) }}>
+              <p className="flex items-center uppercase font-semibold"
+                style={{ color: theme.labelColor, fontFamily: theme.labelFont,
+                  fontSize: labelSize, letterSpacing: "0.16em",
+                  marginBottom: px(0.003), gap: px(0.007), opacity: 0.8 }}>
+                <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: labelSize }} />
+                to
+              </p>
+              <p className="leading-none truncate"
+                style={{
+                  color: theme.toColor, fontFamily: theme.toFont,
+                  fontSize: toSize, letterSpacing: "-0.02em", fontWeight: 700,
+                  opacity: receiverName ? 1 : 0.35,
+                }}>
+                {displayReceiver}
+              </p>
+            </div>
 
             {/* FROM */}
-            {senderName && (
-              <div style={{ marginBottom: px(0.014) }}>
-                <p className="flex items-center uppercase font-semibold"
-                  style={{ color: theme.labelColor, fontFamily: theme.labelFont,
-                    fontSize: labelSize, letterSpacing: "0.16em",
-                    marginBottom: px(0.003), gap: px(0.007), opacity: 0.7 }}>
-                  <FontAwesomeIcon icon={faPenNib} style={{ fontSize: labelSize }} />
-                  from
-                </p>
-                <p className="leading-none truncate"
-                  style={{ color: theme.fromColor, fontFamily: theme.fromFont,
-                    fontSize: fromSize, letterSpacing: "0.01em",
-                    fontWeight: 600, fontStyle: "italic" }}>
-                  {senderName}
-                </p>
-              </div>
-            )}
+            <div style={{ marginBottom: px(0.014) }}>
+              <p className="flex items-center uppercase font-semibold"
+                style={{ color: theme.labelColor, fontFamily: theme.labelFont,
+                  fontSize: labelSize, letterSpacing: "0.16em",
+                  marginBottom: px(0.003), gap: px(0.007), opacity: 0.7 }}>
+                <FontAwesomeIcon icon={faPenNib} style={{ fontSize: labelSize }} />
+                from
+              </p>
+              <p className="leading-none truncate"
+                style={{
+                  color: theme.fromColor, fontFamily: theme.fromFont,
+                  fontSize: fromSize, letterSpacing: "0.01em",
+                  fontWeight: 600, fontStyle: "italic",
+                  opacity: senderName ? 1 : 0.35,
+                }}>
+                {displaySender}
+              </p>
+            </div>
 
             {/* occasion pill */}
             <span className="inline-flex items-center rounded-full border font-semibold w-fit"
