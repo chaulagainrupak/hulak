@@ -7,7 +7,6 @@ import {
   faPenNib,
 } from "@fortawesome/free-solid-svg-icons";
 
-// ─── Label ────────────────────────────────────────────────────────────────────
 export function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
     <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
@@ -16,7 +15,6 @@ export function FieldLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-// ─── Sender Email ─────────────────────────────────────────────────────────────
 export function SenderEmail({
   value,
   onChange,
@@ -53,8 +51,6 @@ export function SenderEmail({
   );
 }
 
-// ─── Receiver Email ───────────────────────────────────────────────────────────
-// Fixed min-height so the row never collapses and causes layout shift
 export function ReceiverEmail({
   value,
   onChange,
@@ -135,35 +131,17 @@ export function SendButton({
     <div className="p-3 border-t border-black/[0.05]">
       <button
         onClick={handleClick}
-        disabled={
-          canSend && hasLetter === false ? false : !ready && canSend === false
-        }
+        disabled={canSend && hasLetter === false ? false : !ready && canSend === false}
         className={`
-  flex items-center justify-center gap-2 w-full py-3.5 rounded-md
-  font-semibold text-sm transition-all duration-150 select-none
-
-  ${
-    ready
-      ? `
-        bg-gradient-to-b
-        from-[var(--blue-energy)]
-        to-[var(--blue-energy)]/90
-        text-white
-        shadow-md
-        hover:shadow-lg
-        hover:-translate-y-[1px]
-        active:translate-y-[1px]
-        active:shadow-sm
-        animate-[pulse_0.8s_ease-in-out]
-      `
-      : `
-        bg-amber-50
-        text-amber-500
-        border border-amber-200
-        hover:bg-amber-100
-      `
-  }
-`}
+          flex items-center justify-center gap-2 w-full py-3.5 rounded-md
+          font-semibold text-sm transition-all duration-150 select-none
+          ${ready
+            ? `bg-gradient-to-b from-[var(--blue-energy)] to-[var(--blue-energy)]/90
+               text-white shadow-md hover:shadow-lg hover:-translate-y-[1px]
+               active:translate-y-[1px] active:shadow-sm animate-[pulse_0.8s_ease-in-out]`
+            : `bg-amber-50 text-amber-500 border border-amber-200 hover:bg-amber-100`
+          }
+        `}
       >
         {ready ? (
           <>
@@ -177,7 +155,6 @@ export function SendButton({
           </>
         )}
       </button>
-
       {!canSend && (
         <p className="text-center text-[10px] text-gray-300 mt-1.5">
           Fill in sender &amp; recipient names above

@@ -34,7 +34,6 @@ export default function LetterWriter() {
   return (
     <div className="flex flex-col">
 
-      {/* ── MOBILE TAB BAR ── */}
       <div className="lg:hidden sticky top-0 z-10 bg-[var(--wheat)] border-b border-black/10">
         <div className="flex items-center px-3 py-2 gap-2">
 
@@ -71,9 +70,7 @@ export default function LetterWriter() {
           {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Send CTA — always visible, changes based on state */}
           {activeTab === "write" ? (
-            // On write tab: nudge to go fill envelope
             <button
               onClick={() => setActiveTab("envelope")}
               className={`
@@ -89,7 +86,6 @@ export default function LetterWriter() {
               {hasLetter ? "Next →" : "Write first"}
             </button>
           ) : (
-            // On envelope tab: visual reminder that send is below
             <div className="flex items-center gap-1 text-[11px] text-gray-400 pr-1">
               <FontAwesomeIcon icon={faPaperPlane} className="w-2.5 h-2.5" />
               <span>Send below</span>
@@ -107,7 +103,7 @@ export default function LetterWriter() {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row flex-1 gap-6 p-4 lg:p-6">
+      <div className="flex flex-col lg:flex-row flex-1 gap-6 p-2">
 
         {/* LEFT — WRITER */}
         <div className="w-full lg:w-1/2 flex flex-col">

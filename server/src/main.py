@@ -1,7 +1,21 @@
 from fastapi import FastAPI
-
-from messages import messageRouter
+from fastapi.middleware.cors import CORSMiddleware
+from .letters.router import letterRouter
 
 app = FastAPI()
-app.include_router(messageRouter)
 
+origins = [
+    "http://localhost:4321",
+    "http://localhost:8080",
+    "https://hulak.app",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(letterRouter)

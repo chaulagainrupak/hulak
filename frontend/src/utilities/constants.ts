@@ -1,10 +1,8 @@
-// ─── Environment ──────────────────────────────────────────────────────────────
 export const API_URL = import.meta.env.PUBLIC_API_URL as string;
 export const TURNSTILE_SITE_KEY = import.meta.env
   .PUBLIC_TURNSTILE_SITE_KEY as string;
 export const SHARE_BASE_URL = import.meta.env.PUBLIC_SHARE_BASE_URL as string;
 
-// ─── Occasions ────────────────────────────────────────────────────────────────
 export const OCCASIONS = [
   "Just because",
   "Love letter",
@@ -27,7 +25,6 @@ export const STAMPS = [
   { id: "umbrella", label: "Umbrella", url: "/stamps/umbrella.png" },
 ] as const;
 
-// ─── Types ────────────────────────────────────────────────────────────────────
 export type EnvelopeData = {
   senderName: string;
   senderEmail: string;
@@ -54,7 +51,6 @@ export const defaultEnvelope = (): EnvelopeData => ({
   stampId: "",
 });
 
-// ─── Shared Styles ────────────────────────────────────────────────────────────
 export const inputCls = `
 w-full
 bg-[#fafafa]

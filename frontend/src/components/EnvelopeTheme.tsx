@@ -15,7 +15,6 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
-// ─── TYPES ────────────────────────────────────────────────────────────────────
 
 type DecoIcon = {
   icon: IconDefinition;
@@ -319,7 +318,6 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
   },
 };
 
-// ─── COMPONENT ────────────────────────────────────────────────────────────────
 
 type EnvelopePreviewProps = {
   senderName: string;
