@@ -595,14 +595,29 @@ async def generateOpenGraphImage(
     return output_path
 
 
-# ─── Example usage ────────────────────────────────────────────────────────────
-if __name__ == "__main__":
-    import sys
+# # ─── Example usage ────────────────────────────────────────────────────────────
+# if __name__ == "__main__":
+#     import sys
 
-    # python ogp_generator.py [slug] [sender] [receiver] [occasion]
-    slug     = sys.argv[1] if len(sys.argv) > 1 else "test"
-    sender   = sys.argv[2] if len(sys.argv) > 2 else "Alice"
-    receiver = sys.argv[3] if len(sys.argv) > 3 else "Bob"
-    occasion = sys.argv[4] if len(sys.argv) > 4 else "Love letter"
+#     # python ogp_generator.py [slug] [sender] [receiver] [occasion]
+#     slug     = sys.argv[1] if len(sys.argv) > 1 else "test"
+#     sender   = sys.argv[2] if len(sys.argv) > 2 else "Alice"
+#     receiver = sys.argv[3] if len(sys.argv) > 3 else "Bob"
+#     occasion = sys.argv[4] if len(sys.argv) > 4 else "Love letter"
 
-    asyncio.run(generateOpenGraphImage(slug, sender, receiver, occasion))
+#     asyncio.run(generateOpenGraphImage(slug, sender, receiver, occasion))
+
+from fastapi import APIRouter, Request
+from fastapi.responses import FileResponse, JSONResponse
+
+ogpRouter = APIRouter()
+
+@ogpRouter.get("/ogp/{slug}")
+async def return_ogp_image(slug: str, request: Request):
+    output_path = os.path.join(IMAGES_DIR, f"{slug}.png")
+    
+    # If image already exists (cached), serve it directly
+    if os.path.exists(output_path):
+        return FileResponse(output_path, media_type="image/png")
+    
+    return JSONResponse({"error": "Image not found"}, status_code=404)

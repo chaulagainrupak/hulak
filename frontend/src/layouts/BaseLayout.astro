@@ -1,22 +1,51 @@
 ---
 import "../styles/global.css";
 import NavigationBar from "../components/NavigationBar.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogUrl?: string;
+}
+
+const {
+  title = "Hulak — Send Digital Letters & Messages",
+  description = "Send beautiful, heartfelt digital letters to the people you love.",
+  ogImage,
+  ogUrl,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hulak — Send Digital Letters & Messages</title>
-      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
 
-  <body class="bg-[var(--wheat)] flex flex-col">
-    <NavigationBar />
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  {ogUrl && <meta property="og:url" content={ogUrl} />}
+  {ogImage && <meta property="og:image" content={ogImage} />}
+  {ogImage && <meta property="og:image:width" content="1200" />}
+  {ogImage && <meta property="og:image:height" content="630" />}
 
-    <main class="lg:px-24">
-      <slot />
-    </main>
-  </body>
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body class="bg-[var(--wheat)] flex flex-col">
+  <NavigationBar />
+  <main class="lg:px-24">
+    <slot />
+  </main>
+</body>
 </html>
