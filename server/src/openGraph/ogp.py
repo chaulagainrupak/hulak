@@ -5,7 +5,7 @@ from jinja2 import Template
 
 # ─── Setup folders ───────────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-IMAGES_DIR = os.path.join("/data", "images")
+IMAGES_DIR = "/data/images"
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
 # ─── Theme definitions (mirrored 1:1 from TSX OCCASION_THEMES) ───────────────
@@ -586,10 +586,17 @@ async def generateOpenGraphImage(
 
     page = await browser.new_page()
     await page.set_viewport_size({"width": 1200, "height": 630})
-    await page.set_content(html, wait_until="networkidle")
+    # await page.set_content(html, wait_until="networkidle")
+    await page.goto("data:text/html;charset=utf-8," + html)
     # wait a tick for web fonts to render
-    await page.wait_for_timeout(800)
-    await page.screenshot(path=output_path, clip={"x": 0, "y": 0, "width": 1200, "height": 630})
+    await page.wait_for_timeout(2000)
+    
+    try:
+      await page.screenshot(path=output_path, full_page=False)
+      print("Saved OGP →", output_path)
+    except Exception as e:
+      print("SCREENSHOT FAILED:", str(e))
+
     await page.close()
     print(f"Saved OGP → {output_path}")
     return output_path
