@@ -632,7 +632,7 @@ async def return_ogp_image(slug: str, request: Request):
     conn.close()
     if letter:
       try:
-        generateOpenGraphImage(
+        await generateOpenGraphImage(
         slug=slug,
         sender=letter[3],
         receiver=letter[5],
@@ -641,7 +641,7 @@ async def return_ogp_image(slug: str, request: Request):
       except Exception as e:
         print(f"OGP Image generation failed due to: {e}")
 
-        
+
     # If image already exists (cached), serve it directly
     if os.path.exists(output_path):
         return FileResponse(output_path, media_type="image/png")
