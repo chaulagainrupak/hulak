@@ -9,6 +9,7 @@ origins = [
     "http://localhost:4321",
     "http://localhost:8080",
     "https://hulak.app",
+    "https://www.hulak.app",
 ]
 
 app.add_middleware(
