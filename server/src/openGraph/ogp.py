@@ -586,10 +586,14 @@ async def generateOpenGraphImage(
 
     page = await browser.new_page()
     await page.set_viewport_size({"width": 1200, "height": 630})
-    # await page.set_content(html, wait_until="networkidle")
-    await page.goto("data:text/html;charset=utf-8," + html)
-    # wait a tick for web fonts to render
-    await page.wait_for_timeout(2000)
+    await page.set_content(html, wait_until="networkidle")
+    await page.emulate_media(media="screen")
+
+    # wait for fonts
+    await page.evaluate("document.fonts.ready")
+    await page.wait_for_timeout(500)
+
+    await page.screenshot(path=output_path, full_page=False)
     
     try:
       await page.screenshot(path=output_path, full_page=False)
