@@ -617,12 +617,31 @@ async def generateOpenGraphImage(
 from fastapi import APIRouter, Request
 from fastapi.responses import FileResponse, JSONResponse
 
+from ..db import *
+
 ogpRouter = APIRouter()
 
 @ogpRouter.get("/ogp/{slug}")
 async def return_ogp_image(slug: str, request: Request):
     output_path = os.path.join(IMAGES_DIR, f"{slug}.png")
     
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM letters WHERE slug = ?", (slug,))
+    letter = cursor.fetchone()
+    conn.close()
+    if letter:
+      try:
+        generateOpenGraphImage(
+        slug=slug,
+        sender=letter[3],
+        receiver=letter[5],
+        occasion=letter[7]
+      )
+      except Exception as e:
+        print(f"OGP Image generation failed due to: {e}")
+
+        
     # If image already exists (cached), serve it directly
     if os.path.exists(output_path):
         return FileResponse(output_path, media_type="image/png")
