@@ -5,7 +5,7 @@ from jinja2 import Template
 
 # ─── Setup folders ───────────────────────────────────────────────────────────
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-IMAGES_DIR = os.path.join(BASE_DIR, "images")
+IMAGES_DIR = os.path.join("/data", "images")
 os.makedirs(IMAGES_DIR, exist_ok=True)
 
 # ─── Theme definitions (mirrored 1:1 from TSX OCCASION_THEMES) ───────────────
