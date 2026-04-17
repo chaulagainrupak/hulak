@@ -12,40 +12,48 @@ interface Props {
 const {
   title = "Hulak — Send Digital Letters & Messages",
   description = "Send beautiful, heartfelt digital letters to the people you love.",
-  ogImage,
+  ogImage = "/Stamp.png",
   ogUrl,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  {ogUrl && <meta property="og:url" content={ogUrl} />}
-  {ogImage && <meta property="og:image" content={ogImage} />}
-  {ogImage && <meta property="og:image:width" content="1200" />}
-  {ogImage && <meta property="og:image:height" content="630" />}
+    <link rel="shortcut icon" href="/Stamp.png" type="image/x-icon" />
+    <script
+      defer
+      src="https://analytics.chaulagainrupak.com.np/script.js"
+      data-website-id="e11ca964-9ca2-4cab-b37d-d1aa093d41ae"></script>
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {ogUrl && <meta property="og:url" content={ogUrl} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
 
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-</head>
-<body class="bg-[var(--wheat)] flex flex-col">
-  <NavigationBar />
-  <main class="lg:px-24">
-    <slot />
-  </main>
-</body>
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer></script>
+  </head>
+  <body class="bg-[var(--wheat)] flex flex-col">
+    <NavigationBar />
+    <main class="lg:px-24">
+      <slot />
+    </main>
+  </body>
 </html>

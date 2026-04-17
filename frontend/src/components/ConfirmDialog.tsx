@@ -310,6 +310,7 @@ useEffect(() => {
               Cancel
             </button>
             <button
+              data-umami-event="Send Button Confirm Click"
               onClick={handleConfirm}
               disabled={!!slugError || loading || disabled}
               className={`

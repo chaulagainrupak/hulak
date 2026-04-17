@@ -171,6 +171,7 @@ export default function EnvelopePanel({ quillRef, onNeedLetter }: Props) {
             </div>
 
             <SendButton
+              data-umami-event="Send Button Click"
               canSend={canSend}
               hasLetter={hasLetter}
               onSend={() => setShowConfirm(true)}

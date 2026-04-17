@@ -39,7 +39,6 @@ export default function FirstLoadPage() {
     <div className="fixed inset-0 flex items-center justify-center bg-[var(--wheat)] px-4 sm:px-6 md:px-8 z-[200]">
       <LetterOutline paperClassName="shadow-sm">
         <div className="text-center w-full max-w-2xl text-[var(--onyx)] p-6">
-
           <div className="title-area mb-6 grid grid-cols-[1fr_auto_1fr] items-start">
             <div />
 
@@ -68,8 +67,8 @@ export default function FirstLoadPage() {
             </p>
 
             <p>
-              No feeds. No noise. Just one message delivered with intention;
-              the way good old letters used to be.
+              No feeds. No noise. Just one message delivered with intention; the
+              way good old letters used to be.
             </p>
 
             <p>
@@ -79,6 +78,7 @@ export default function FirstLoadPage() {
           </div>
 
           <button
+            data-umami-event="First Load Button Click"
             onClick={() => {
               localStorage.setItem("isFirstLoad", "true");
               setIsFirstLoad(false);
@@ -88,7 +88,6 @@ export default function FirstLoadPage() {
             Try Sending Something
             <FontAwesomeIcon icon={faPaperPlane} className="w-4 h-4" />
           </button>
-
         </div>
       </LetterOutline>
     </div>
