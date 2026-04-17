@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LetterOutline } from "./AirMailBorder";
 import EnvelopePreview from "./EnvelopeTheme";
 import { useState } from "react";
@@ -15,31 +16,6 @@ type SuccessDialogProps = {
   stampLabel?: string;
 };
 
-function copyToClipboard(text: string): Promise<void> {
-  if (navigator.clipboard?.writeText) {
-    return navigator.clipboard.writeText(text);
-  }
-  return new Promise((resolve, reject) => {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.setAttribute("readonly", "");
-    ta.style.cssText =
-      "position:fixed;top:-9999px;left:-9999px;opacity:0;pointer-events:none";
-    document.body.appendChild(ta);
-    const range = document.createRange();
-    range.selectNodeContents(ta);
-    const sel = window.getSelection();
-    if (sel) {
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }
-    ta.setSelectionRange(0, ta.value.length);
-    const ok = document.execCommand("copy");
-    document.body.removeChild(ta);
-    ok ? resolve() : reject(new Error("execCommand copy failed"));
-  });
-}
-
 export default function SuccessDialog({
   onClose,
   slug,
@@ -55,16 +31,10 @@ export default function SuccessDialog({
   const shareUrl = `${PUBLIC_SHARE_BASE_URL}/${slug}`;
 
   const handleCopy = () => {
-    copyToClipboard(shareUrl)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2500);
-      })
-      .catch(() => {
-        if (navigator.share) {
-          navigator.share({ url: shareUrl }).catch(() => {});
-        }
-      });
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    });
   };
 
   return (
@@ -81,6 +51,7 @@ export default function SuccessDialog({
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Header — success green tint */}
         <div
           className="flex items-center justify-between px-5 py-4"
           style={{
@@ -108,8 +79,8 @@ export default function SuccessDialog({
             <i className="ph ph-x text-base" />
           </button>
         </div>
-
         <div className="p-5 flex flex-col gap-4">
+          {/* Envelope preview */}
           <LetterOutline
             className="w-full"
             paperClassName="w-full aspect-[2.4/1] rounded-xl overflow-hidden"
@@ -124,12 +95,12 @@ export default function SuccessDialog({
             />
           </LetterOutline>
 
+          {/* Success message */}
           <div
             className="rounded-lg px-4 py-3 flex items-start gap-3"
             style={{
               background: "color-mix(in srgb, #16a34a 6%, transparent)",
-              border:
-                "1px solid color-mix(in srgb, #16a34a 18%, transparent)",
+              border: "1px solid color-mix(in srgb, #16a34a 18%, transparent)",
             }}
           >
             <i
@@ -146,6 +117,7 @@ export default function SuccessDialog({
             </div>
           </div>
 
+          {/* Share link */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-1.5">
               <i
@@ -158,42 +130,40 @@ export default function SuccessDialog({
             </div>
 
             <div
-              className="rounded-md"
+              className="flex items-stretch rounded-md border overflow-hidden"
               style={{
                 background: "var(--paper-bg)",
                 border:
                   "1px solid color-mix(in srgb, var(--onyx) 10%, transparent)",
               }}
             >
-              <div className="px-3 py-2.5">
-                <span
-                  className="text-sm font-mono text-gray-700 break-all select-all"
-                >
-                  {shareUrl}
-                </span>
+              <span className="pl-3 pr-1 text-xs whitespace-nowrap select-none font-mono text-gray-400 flex items-center">
+                hulak.app/open/
+              </span>
+
+              <div className="flex-1 overflow-x-auto">
+                <div className="whitespace-nowrap py-2.5 pr-3 text-sm font-mono text-gray-700">
+                  {slug}
+                </div>
               </div>
 
               <button
                 onClick={handleCopy}
                 className={`
-                  w-full flex items-center justify-center gap-2
-                  text-xs px-3 py-2.5 font-semibold transition-all
-                  rounded-b-md border-t
-                  ${
-                    copied
-                      ? "bg-green-50 text-green-600 border-green-200"
-                      : "text-gray-500 border-black/10 hover:text-[var(--blue-energy)] hover:bg-[var(--blue-energy)]/5 active:bg-[var(--blue-energy)]/10"
-                  }
-                `}
+      flex items-center justify-center w-16 text-xs py-2.5 font-semibold transition-all flex-shrink-0 border-l
+      ${
+        copied
+          ? "bg-green-50 text-green-600 border-green-200"
+          : "text-gray-500 border-black/10 hover:text-[var(--blue-energy)] hover:bg-[var(--blue-energy)]/5"
+      }
+    `}
               >
-                <i
-                  className={`ph ${copied ? "ph-check" : "ph-copy"} text-sm`}
-                />
-                {copied ? "Copied!" : "Copy link"}
+                {copied ? "Copied!" : "Copy"}
               </button>
             </div>
           </div>
 
+          {/* Done button */}
           <button
             onClick={onClose}
             className="

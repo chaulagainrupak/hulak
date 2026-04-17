@@ -16,14 +16,6 @@ export const OCCASIONS = [
   "Good luck",
 ] as const;
 
-// ─── Stamps ───────────────────────────────────────────────────────────────────
-export const STAMPS = [
-  { id: "pulp", label: "Pulp Fiction", url: "/stamps/pulp.png" },
-  { id: "nepal", label: "नेपाल", url: "/stamps/nepal.png" },
-  { id: "floral", label: "Floral", url: "/stamps/floral.png" },
-  { id: "chiya", label: "Chi-Ya", url: "/stamps/chiya.png" },
-  { id: "umbrella", label: "Umbrella", url: "/stamps/umbrella.png" },
-] as const;
 
 export type EnvelopeData = {
   senderName: string;
@@ -35,7 +27,7 @@ export type EnvelopeData = {
   customSlug: string;
   notifyReceiver: boolean;
   joinMailingList: boolean;
-  stampId: string;
+  stampId: number | null;
 };
 
 export const defaultEnvelope = (): EnvelopeData => ({
@@ -48,7 +40,7 @@ export const defaultEnvelope = (): EnvelopeData => ({
   customSlug: "",
   notifyReceiver: true,
   joinMailingList: true,
-  stampId: "",
+  stampId: null,
 });
 
 export const inputCls = `

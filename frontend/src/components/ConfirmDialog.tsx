@@ -9,6 +9,87 @@ import { API_URL, TURNSTILE_SITE_KEY } from "../utilities/constants";
 const PUBLIC_SHARE_BASE_URL = "https://hulak.app/open";
 const SLUG_MAX = 32;
 
+const sendingMessages = [
+  "Sending…",
+  "Really sending…",
+  "Holding tight…",
+  "Brewing carrier pigeons…",
+  "Convincing servers to behave…",
+  "Talking to the API…",
+  "Negotiating with latency…",
+  "Uploading emotional damage…",
+  "Faxing it to 1998…",
+  "Mailman is on the way…",
+  "Still thinking about it…",
+  "Please don’t close this tab…",
+  "Making sure it exists…",
+  "Asking DNS nicely…",
+  "Assembling packets…",
+  "Wrapping feelings into JSON…",
+  "Charging internet crystals…",
+  "Reticulating splines…",
+  "Probably fine…",
+  "Definitely maybe sending…",
+  "Almost there…",
+  "This is taking longer than expected…",
+  "Server is shy…",
+  "Deploying emotional payload…",
+  "Sending vibes first…",
+  "Bribing the backend…",
+  "Waking up the database…",
+  "Convincing CORS to cooperate…",
+  "Aligning pixels and destiny…",
+  "Polishing HTTP request…",
+  "Tuning cosmic routers…",
+  "Asking the cloud for permission…",
+  "Unpacking existential packets…",
+  "Routing through emotional CDN…",
+  "Checking if reality is online…",
+  "Making sure bits didn’t get lost…",
+  "Rechecking everything twice…",
+  "Applying final coat of bytes…",
+  "Still loading… emotionally too…",
+  "Almost there, seriously this time…",
+  "If this fails, blame latency…",
+  "We are so back…",
+  "We were never back, but trying…",
+
+  "✉️ Drafting envelope…",
+  "📨 Folding paper into digital form…",
+  "🖋️ Writing address carefully…",
+  "📬 Sticking stamps…",
+  "💌 Sealing envelope with hope…",
+  "📮 Dropping letter into mailbox…",
+  "🚚 Handing off to postal service…",
+  "🐦 Summoning carrier pigeons…",
+  "🐦 Pigeon #42 is on duty…",
+  "🐦 Training pigeons for better uptime…",
+  "🌧️ Waiting for weather clearance…",
+  "🛰️ Syncing with orbital mail relay…",
+  "📡 Broadcasting letter into void…",
+  "🧾 Printing emotional receipt…",
+  "🧠 Encoding feelings into packets…",
+  "🧵 Stitching envelope edges…",
+  "🪶 Feathering pigeon flight path…",
+  "🧭 Calibrating delivery direction…",
+  "🛤️ Routing through postal rails…",
+  "🏤 Visiting local post office…",
+  "🧳 Packing letter for travel…",
+  "🛫 Preparing for takeoff…",
+  "✈️ In transit through cloud layers…",
+  "🌍 Crossing digital borders…",
+  "⏳ Delivery ETA recalculating…",
+  "📦 Boxing emotions securely…",
+  "🔐 Locking envelope contents…",
+  "🧿 Adding protective charm…",
+  "🧹 Cleaning up trailing commas…",
+  "🧃 Hydrating pigeons…",
+  "🧾 Filing paperwork in bureaucracy…",
+  "🏁 Finalizing delivery route…",
+  "💨 Speeding through fiber optics…",
+  "🪐 Delivering across space-time…",
+];
+
 type ConfirmDialogProps = {
   onClose: () => void;
   onConfirm: (slug: string) => void;
@@ -44,10 +125,9 @@ export default function ConfirmDialog({
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
   const [disabled, setDisabled] = useState(true);
-
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [sendText, setSendText] = useState(sendingMessages[0]);
 
   const slugError = slug && slug.length < 3 ? "Too short — min 3 chars" : "";
   const shareUrl = slug ? `${PUBLIC_SHARE_BASE_URL}/${slug}` : null;
@@ -109,25 +189,46 @@ export default function ConfirmDialog({
       const data = await res.json();
       const returnedSlug: string = data.slug;
       onConfirm(returnedSlug);
-    } catch (err) {
-      setError("Couldn't post your message. Report this to the webmaster or try again later.");
+    } catch {
+      setError(
+        "Couldn't post your message. Report this to the webmaster or try again later.",
+      );
     } finally {
       setLoading(false);
     }
   };
 
-  
-useEffect(() => {
-  // @ts-ignore
-  turnstile.render("#widget-container", {
-    sitekey: TURNSTILE_SITE_KEY,
-    size: "flexible",
-    callback: (token: string) => {
-      setTurnstileToken(token); // save the token
-      setDisabled(false);
+  useEffect(() => {
+    // @ts-ignore
+    turnstile.render("#widget-container", {
+      sitekey: TURNSTILE_SITE_KEY,
+      size: "flexible",
+      callback: (token: string) => {
+        setTurnstileToken(token);
+        setDisabled(false);
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+  if (!loading) return;
+
+  let lastIndex = -1;
+
+  const interval = setInterval(() => {
+    let randomIndex = Math.floor(Math.random() * sendingMessages.length);
+
+    while (randomIndex === lastIndex && sendingMessages.length > 1) {
+      randomIndex = Math.floor(Math.random() * sendingMessages.length);
     }
-  });
-}, []);
+
+    lastIndex = randomIndex;
+    setSendText(sendingMessages[randomIndex]);
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, [loading]);
+
   return (
     <div
       className="fixed inset-0 z-[1000] flex items-center justify-center"
@@ -159,7 +260,7 @@ useEffect(() => {
               className="text-sm font-bold uppercase tracking-widest"
               style={{ color: "var(--onyx)", opacity: 0.55 }}
             >
-              Confirm &amp; Post
+              Confirm & Post
             </span>
           </div>
           <button
@@ -207,17 +308,7 @@ useEffect(() => {
               )}
             </div>
 
-            <div
-              className={`
-                flex items-center rounded-md border overflow-hidden transition
-                bg-[var(--paper-bg)]
-                ${
-                  slugError
-                    ? "border-[var(--red-stamp)] ring-2 ring-[var(--red-stamp)]/10"
-                    : "border-black/10 focus-within:border-[var(--blue-energy)]/40 focus-within:ring-2 focus-within:ring-[var(--blue-energy)]/10"
-                }
-              `}
-            >
+            <div className="flex items-center rounded-md border overflow-hidden transition bg-[var(--paper-bg)] border-black/10">
               <span className="pl-3 pr-0.5 text-xs whitespace-nowrap select-none font-mono text-gray-400">
                 hulak.app/open/
               </span>
@@ -249,14 +340,11 @@ useEffect(() => {
                 </p>
                 <button
                   onClick={handleCopy}
-                  className={`
-                    flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md font-medium transition-all flex-shrink-0
-                    ${
-                      copied
-                        ? "bg-green-50 text-green-600 border border-green-200"
-                        : "border border-black/10 text-gray-400 hover:text-[var(--blue-energy)] hover:border-[var(--blue-energy)]/30"
-                    }
-                  `}
+                  className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md font-medium transition-all flex-shrink-0 ${
+                    copied
+                      ? "bg-green-50 text-green-600 border border-green-200"
+                      : "border border-black/10 text-gray-400 hover:text-[var(--blue-energy)] hover:border-[var(--blue-energy)]/30"
+                  }`}
                 >
                   <i
                     className={`ph ${copied ? "ph-check" : "ph-copy"} text-sm`}
@@ -275,15 +363,7 @@ useEffect(() => {
           </div>
 
           {error && (
-            <div
-              className="rounded-lg px-3 py-2 flex items-center gap-2"
-              style={{
-                background:
-                  "color-mix(in srgb, var(--red-stamp) 6%, transparent)",
-                border:
-                  "1px solid color-mix(in srgb, var(--red-stamp) 20%, transparent)",
-              }}
-            >
+            <div className="rounded-lg px-3 py-2 flex items-center gap-2 bg-red-50 border border-red-200">
               <i
                 className="ph ph-warning-circle text-sm flex-shrink-0"
                 style={{ color: "var(--red-stamp)" }}
@@ -295,34 +375,26 @@ useEffect(() => {
           )}
 
           <div id="widget-container"></div>
+
           <div className="flex gap-2.5 pt-1">
+            {!loading ? (
+              <button
+                onClick={onClose}
+                disabled={loading}
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-md font-semibold text-sm transition-all border border-gray-200 hover:bg-amber-100 disabled:opacity-40"
+              >
+                <i className="ph ph-x text-sm" />
+                Cancel
+              </button>
+            ) : null}
             <button
-              onClick={onClose}
-              disabled={loading}
-              className="
-                flex-1 flex items-center justify-center gap-2
-                py-3.5 rounded-md font-semibold text-sm
-                transition-all duration-150 select-none border border-gray-200
-                hover:bg-amber-100 disabled:opacity-40 disabled:cursor-not-allowed
-              "
-            >
-              <i className="ph ph-x text-sm" />
-              Cancel
-            </button>
-            <button
-              data-umami-event="Send Button Confirm Click"
               onClick={handleConfirm}
               disabled={!!slugError || loading || disabled}
-              className={`
-                flex-1 flex items-center justify-center gap-2
-                py-3.5 rounded-md font-semibold text-sm
-                transition-all duration-150 select-none
-                ${
-                  !slugError && !loading && !disabled
-                    ? "bg-gradient-to-b from-[var(--blue-energy)] to-[var(--blue-energy)]/90 text-white shadow-md hover:shadow-lg hover:-translate-y-[1px] active:translate-y-[1px] active:shadow-sm"
-                    : "bg-red-50 text-red-300 border border-red-200 cursor-not-allowed"
-                }
-              `}
+              className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-md font-semibold text-sm transition-all ${
+                !slugError && !loading && !disabled
+                  ? "bg-gradient-to-b from-[var(--blue-energy)] to-[var(--blue-energy)]/90 text-white shadow-md hover:shadow-lg"
+                  : "bg-red-50 text-red-300 border border-red-200 cursor-not-allowed"
+              }`}
             >
               {loading ? (
                 <>
@@ -330,7 +402,7 @@ useEffect(() => {
                     icon={faSpinner}
                     className="w-3.5 h-3.5 animate-spin"
                   />
-                  Sending…
+                  {sendText}
                 </>
               ) : (
                 <>

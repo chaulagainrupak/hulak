@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .letters.router import letterRouter
 from .openGraph import ogpRouter
+from .stamps import stamps_router
 
 app = FastAPI()
 
@@ -22,3 +23,4 @@ app.add_middleware(
 
 app.include_router(letterRouter)
 app.include_router(ogpRouter)
+app.include_router(stamps_router)

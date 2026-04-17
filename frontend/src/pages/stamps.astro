@@ -1,0 +1,110 @@
+---
+import { LetterOutline } from "../components/AirMailBorder";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const API_URL = import.meta.env.PUBLIC_API_URL;
+
+type Stamp = {
+  id: number;
+  label: string;
+  image_url: string;
+  category?: string;
+  author?: string;
+  author_source_link?: string;
+};
+
+const res = await fetch(`${API_URL}/stamps`);
+const data: Record<string, Stamp> = await res.json();
+
+const stamps: Stamp[] = Object.values(data);
+
+const categories = Array.from(
+  new Set(stamps.map((s) => s.category || "other"))
+);
+---
+
+<BaseLayout title="Stamps">
+  <div class="max-w-5xl mx-auto px-4 py-6">
+
+    <LetterOutline>
+      <div class="p-6 flex flex-col gap-5">
+
+        <!-- HEADER -->
+        <div class="mb-2">
+          <h1 class="text-2xl font-semibold tracking-tight">
+            Stamps
+          </h1>
+
+          <p class="text-sm text-gray-500 mt-1">
+            Compact postal archive
+          </p>
+        </div>
+
+        <!-- FILTER -->
+        <span class="text-sm text-gray-600">
+          Filter By Category
+        </span>
+
+        <div class="flex gap-2 overflow-x-auto pb-2">
+          {categories.map((cat) => (
+            <a
+              href={`#${cat}`}
+              class="px-3 py-1 text-sm whitespace-nowrap rounded-full border border-black/10 text-gray-600 hover:bg-black hover:text-white transition"
+            >
+              {cat}
+            </a>
+          ))}
+        </div>
+
+        <!-- GRID -->
+        <div class="flex flex-col gap-6">
+
+          {categories.map((cat) => (
+            <section id={cat} class="scroll-mt-24">
+
+              <div class="flex items-center gap-2 mb-3">
+
+                <span class="text-sm uppercase tracking-widest text-gray-500">
+                  {cat}
+                </span>
+
+              </div>
+
+              <!-- MICRO GRID -->
+              <div class="flex flex-wrap gap-3">
+
+                {stamps
+                  .filter((s) => (s.category || "other") === cat)
+                  .map((stamp) => (
+                    <a
+                      href={stamp.author_source_link || "#"}
+                      target="_blank"
+                      class="group flex flex-col items-center w-[56px]"
+                    >
+
+                      <!-- STAMP -->
+                      <div class="w-[42px] h-[58px] bg-white border border-black/10 rounded-md overflow-hidden flex items-center justify-center hover:shadow-sm transition">
+
+                        <img
+                          src={stamp.image_url}
+                          alt={stamp.label}
+                          class="w-full h-full object-cover group-hover:scale-105 transition duration-150"
+                        />
+
+                      </div>
+
+                    </a>
+                  ))}
+
+              </div>
+
+            </section>
+          ))}
+
+        </div>
+
+      </div>
+    </LetterOutline>
+
+  </div>
+</BaseLayout>
