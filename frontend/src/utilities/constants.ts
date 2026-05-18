@@ -38,7 +38,7 @@ export const defaultEnvelope = (): EnvelopeData => ({
   occasion: "Just because",
   customOccasionLabel: "",
   customSlug: "",
-  notifyReceiver: true,
+  notifyReceiver: false,
   joinMailingList: true,
   stampId: null,
 });

@@ -1,6 +1,6 @@
-fastapi==0.136.0
+fastapi==0.136.1
 Jinja2==3.1.6
 playwright==1.58.0
 python-dotenv==1.2.2
-Requests==2.33.1
-uvicorn
+Requests==2.34.2
+resend==2.30.1

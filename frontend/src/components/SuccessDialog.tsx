@@ -1,7 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LetterOutline } from "./AirMailBorder";
 import EnvelopePreview from "./EnvelopeTheme";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import {
+  faWhatsapp,
+  faXTwitter,
+  faTelegram,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faCircleCheck,
+  faXmark,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 const PUBLIC_SHARE_BASE_URL = "https://hulak.app/open";
 
@@ -16,6 +29,59 @@ type SuccessDialogProps = {
   stampLabel?: string;
 };
 
+const SHARE_PLATFORMS: Array<{
+  id: "whatsapp" | "twitter" | "telegram" | "email" | "instagram";
+  label: string;
+  color: string;
+  icon: IconDefinition;
+  action?: "copy";
+  getUrl?: (url: string, text: string, receiver?: string) => string;
+}> = [
+  {
+    id: "whatsapp",
+    label: "WhatsApp",
+    color: "#25D366",
+    icon: faWhatsapp,
+    getUrl: (url: string, text: string) =>
+      `https://wa.me/?text=${encodeURIComponent(`${text}\n${url}`)}`,
+  },
+  {
+    id: "twitter",
+    label: "X",
+    color: "#000000",
+    icon: faXTwitter,
+    getUrl: (url: string, text: string) =>
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+  },
+  {
+    id: "telegram",
+    label: "Telegram",
+    color: "#229ED9",
+    icon: faTelegram,
+    getUrl: (url: string, text: string) =>
+      `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+  },
+  {
+    id: "email",
+    label: "Email",
+    color: "#c8693a",
+    icon: faEnvelope,
+    getUrl: (url: string, _text: string, receiver?: string) =>
+      `mailto:?subject=${encodeURIComponent(`✉️ A letter for ${receiver || "you"}`)}&body=${encodeURIComponent(
+        `Hi ${receiver || "there"},\n\nI sent you a letter on Hulak.\n\nIt’s a small private message I wrote just for you.\n\nYou can open it here:\n${url}\n\nTake your time reading it.\n\n— Hulak`,
+      )}`,
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+    color: "#E1306C",
+    icon: faInstagram,
+    action: "copy",
+  },
+];
+
+type PlatformId = (typeof SHARE_PLATFORMS)[number]["id"];
+
 export default function SuccessDialog({
   onClose,
   slug,
@@ -27,14 +93,33 @@ export default function SuccessDialog({
   stampLabel,
 }: SuccessDialogProps) {
   const [copied, setCopied] = useState(false);
+  const [flashId, setFlashId] = useState<PlatformId | null>(null);
 
   const shareUrl = `${PUBLIC_SHARE_BASE_URL}/${slug}`;
+  const shareText = `✉️ I wrote you a letter on Hulak — open it here:`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(shareUrl).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     });
+  };
+
+  const handleShare = (p: (typeof SHARE_PLATFORMS)[number]) => {
+    if (p.action === "copy") {
+      navigator.clipboard.writeText(`${shareText}\n${shareUrl}`).then(() => {
+        setFlashId(p.id);
+        setTimeout(() => setFlashId(null), 2500);
+      });
+      return;
+    }
+
+    const url =
+      p.id === "email"
+        ? p.getUrl?.(shareUrl, shareText, receiverName || "there") || ""
+        : p.getUrl?.(shareUrl, shareText) || "";
+
+    window.open(url, "_blank");
   };
 
   return (
@@ -51,6 +136,7 @@ export default function SuccessDialog({
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Header */}
         <div
           className="flex items-center justify-between px-5 py-4"
           style={{
@@ -60,8 +146,8 @@ export default function SuccessDialog({
           }}
         >
           <div className="flex items-center gap-2.5">
-            <i
-              className="ph-fill ph-check-circle text-xl"
+            <FontAwesomeIcon
+              icon={faCircleCheck}
               style={{ color: "#16a34a" }}
             />
             <span
@@ -73,11 +159,10 @@ export default function SuccessDialog({
           </div>
 
           <button
-            data-umami-event="Close Success Dialog"
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center rounded-lg transition text-gray-400 hover:text-gray-600 hover:bg-black/5"
           >
-            <i className="ph ph-x text-base" />
+            <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
 
@@ -96,40 +181,18 @@ export default function SuccessDialog({
             />
           </LetterOutline>
 
-          <div
-            className="rounded-lg px-4 py-3 flex items-start gap-3"
-            style={{
-              background: "color-mix(in srgb, #16a34a 6%, transparent)",
-              border: "1px solid color-mix(in srgb, #16a34a 18%, transparent)",
-            }}
-          >
-            <i
-              className="ph ph-envelope-open text-lg mt-0.5 flex-shrink-0"
-              style={{ color: "#16a34a" }}
-            />
-            <div>
-              <p className="text-sm font-semibold text-gray-700">
-                Your letter for {receiverName || "them"} is ready.
-              </p>
-              <p className="text-xs text-gray-500 mt-1">
-                Copy the link below and send it to them so they can open it.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                Recipient link
-              </span>
-            </div>
+          {/* Copy Link */}
+          <div className="flex flex-col gap-1.5">
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+              Send this link to {receiverName || "them"}
+            </span>
 
             <div
-              className="flex items-stretch rounded-md border overflow-hidden"
+              className="flex items-stretch rounded-md overflow-hidden"
               style={{
-                background: "var(--paper-bg)",
                 border:
                   "1px solid color-mix(in srgb, var(--onyx) 10%, transparent)",
+                background: "var(--paper-bg)",
               }}
             >
               <span className="pl-3 pr-1 text-xs whitespace-nowrap select-none font-mono text-gray-400 flex items-center">
@@ -143,39 +206,85 @@ export default function SuccessDialog({
               </div>
 
               <button
-                data-umami-event="Copy Link"
                 onClick={handleCopy}
-                className={`
-                  flex items-center justify-center w-20 text-xs py-2.5 font-semibold transition-all flex-shrink-0 border-l
-                  ${
-                    copied
-                      ? "bg-green-50 text-green-600 border-green-200"
-                      : "text-gray-500 border-black/10 hover:text-[var(--blue-energy)] hover:bg-[var(--blue-energy)]/5"
-                  }
-                `}
+                className={`flex items-center justify-center w-20 text-xs py-2.5 font-semibold transition-all flex-shrink-0 border-l ${
+                  copied
+                    ? "bg-green-50 text-green-600 border-green-200"
+                    : "text-gray-500 border-black/10 hover:text-[var(--blue-energy)] hover:bg-[var(--blue-energy)]/5"
+                }`}
               >
                 {copied ? "Copied ✓" : "Copy"}
               </button>
             </div>
 
-            <p className="text-[11px] text-gray-500">
-              This link is required for {receiverName || "them"} to open the letter.
+            <p className="text-[11px] text-gray-400">
+              Only {receiverName || "they"} can open it — this link is their
+              key.
             </p>
           </div>
 
+          {/* Share */}
+          <div className="flex flex-col gap-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+              Or send directly via
+            </span>
+
+            <div className="grid grid-cols-5 gap-2">
+              {SHARE_PLATFORMS.map((p) => {
+                const isFlashing = flashId === p.id;
+
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => handleShare(p)}
+                    className="flex flex-col items-center gap-1.5 py-2.5 rounded-lg transition-all hover:-translate-y-0.5 active:translate-y-0"
+                    style={{
+                      background: isFlashing
+                        ? "color-mix(in srgb, #16a34a 8%, transparent)"
+                        : `color-mix(in srgb, ${p.color} 8%, transparent)`,
+                      border: `1px solid color-mix(in srgb, ${
+                        isFlashing ? "#16a34a" : p.color
+                      } 18%, transparent)`,
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={p.icon}
+                      style={{ color: isFlashing ? "#16a34a" : p.color }}
+                    />
+
+                    <span
+                      className="text-[10px] font-semibold"
+                      style={{ color: isFlashing ? "#16a34a" : p.color }}
+                    >
+                      {isFlashing ? "Copied!" : p.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <p className="text-[11px] text-gray-400">
+              Instagram can't open links directly — tap to copy the link +
+              message.
+            </p>
+          </div>
+
+          {/* Done */}
           <button
-            data-umami-event="Success Dialog Done Button"
-            onClick={onClose}
+            onClick={() => {
+              navigator.clipboard.writeText(`${shareUrl}`);
+              onClose();
+            }}
             className="
-              w-full flex items-center justify-center gap-2
-              py-3.5 rounded-md font-semibold text-sm
-              transition-all duration-150 select-none
-              bg-gradient-to-b from-[var(--blue-energy)] to-[var(--blue-energy)]/90
-              text-white shadow-md hover:shadow-lg hover:-translate-y-[1px]
-              active:translate-y-[1px] active:shadow-sm
-            "
+    w-full flex items-center justify-center gap-2
+    py-3.5 rounded-md font-semibold text-sm
+    transition-all duration-150 select-none
+    bg-gradient-to-b from-[var(--blue-energy)] to-[var(--blue-energy)]/90
+    text-white shadow-md hover:shadow-lg hover:-translate-y-[1px]
+    active:translate-y-[1px] active:shadow-sm
+  "
           >
-            <i className="ph ph-check text-sm" />
+            <FontAwesomeIcon icon={faCheck} />
             Done
           </button>
         </div>

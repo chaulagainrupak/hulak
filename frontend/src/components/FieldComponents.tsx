@@ -35,7 +35,7 @@ export function SenderEmail({
           data-umami-event="Sender Email Input"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="you@example.com"
+          placeholder="you@example.com (OPTIONAL)"
           type="email"
           className="
             w-full border border-black/10 rounded-md pl-7 pr-2.5 py-1.5 text-xs

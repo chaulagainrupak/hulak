@@ -6,6 +6,7 @@ import re
 
 from ..openGraph import generateOpenGraphImage
 from ..utils import validate_turnstile
+from ..email_handler import send_email, build_letter_email_html
 
 import os
 from dotenv import load_dotenv
@@ -145,5 +146,18 @@ async def create_letter(request: Request):
     await generateOpenGraphImage(
         slug, data.get("sender_name"), data.get("receiver_name"), data.get("occasion")
     )
+
+    if data.get("notify_receiver") and data.get("receiver_email"):
+        sender = data.get("sender_name", "Someone")
+        receiver = data.get("receiver_name", "there")
+        receiver_email = data.get("receiver_email")
+
+        ogp_image_url = f"https://api.hulak.app/ogp/{slug}.png"
+
+        html = build_letter_email_html(
+            sender=sender, receiver=receiver, slug=slug, ogp_image_url=ogp_image_url
+        )
+
+        send_email(to=receiver_email, subject=f"💌 A letter from {sender}", html=html)
 
     return {"slug": slug, "message": "Letter saved successfully"}
