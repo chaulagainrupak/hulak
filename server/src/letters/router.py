@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Request
+from fastapi.responses import JSONResponse
 from ..db import get_connection
 from ..utils import generateSlug
 import json
@@ -16,6 +17,8 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 TURNSTILE_SECRET = os.getenv("TURNSTILE_TOKEN")
 
 letterRouter = APIRouter()
+
+MAX_BODY_SIZE = 1_000_000  # 1MB
 
 
 def slug_exists(slug: str):
@@ -75,7 +78,15 @@ def get_letter(slug: str):
 @letterRouter.post("/letter")
 async def create_letter(request: Request):
 
-    data = await request.json()
+    body = await request.body()
+
+    if len(body) > MAX_BODY_SIZE:
+        return JSONResponse(
+            {"error": "Payload too large"},
+            status_code=413
+        )
+
+    data = json.loads(body)
 
     token = data.get("turnstileToken")
     custom_slug = data.get("slug")
@@ -155,9 +166,16 @@ async def create_letter(request: Request):
         ogp_image_url = f"https://api.hulak.app/ogp/{slug}.png"
 
         html = build_letter_email_html(
-            sender=sender, receiver=receiver, slug=slug, ogp_image_url=ogp_image_url
+            sender=sender,
+            receiver=receiver,
+            slug=slug,
+            ogp_image_url=ogp_image_url
         )
 
-        send_email(to=receiver_email, subject=f"💌 A letter from {sender}", html=html)
+        send_email(
+            to=receiver_email,
+            subject=f"💌 A letter from {sender}",
+            html=html
+        )
 
     return {"slug": slug, "message": "Letter saved successfully"}

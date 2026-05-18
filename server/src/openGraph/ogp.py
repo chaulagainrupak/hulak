@@ -593,7 +593,6 @@ async def generateOpenGraphImage(
     await page.evaluate("document.fonts.ready")
     await page.wait_for_timeout(500)
 
-    await page.screenshot(path=output_path, full_page=False)
     
     try:
       await page.screenshot(path=output_path, full_page=False)
