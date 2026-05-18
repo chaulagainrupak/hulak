@@ -1,0 +1,142 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { LetterOutline } from "../components/AirMailBorder";
+---
+
+<BaseLayout title="FAQ - Hulak">
+  <main class="min-h-screen px-6 py-24 flex justify-center items-center">
+    <div class="w-full max-w-3xl">
+      <LetterOutline strokeWidth={16}>
+        <div class="p-12">
+          <h1 class="text-4xl font-semibold tracking-tight text-[var(--onyx)]">
+            FAQ
+          </h1>
+
+          <p class="text-sm mt-3 text-[var(--blue-energy)] font-medium">
+            Everything you need to know
+          </p>
+
+          <div class="mt-12 space-y-4">
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                What is Hulak?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <div class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed space-y-3">
+                <p>Hulak is a minimal, privacy-first platform designed for creating and sharing beautiful digital letters. Write, customize with multiple fonts and styles, add stamps, and share your letters with a unique link.</p>
+                <p>Whether it's a personal note, a special announcement, or a heartfelt message, Hulak makes it easy to craft and share letters without the clutter of typical email or messaging apps.</p>
+              </div>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                How do I create a letter?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <div class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed space-y-3">
+                <p>Creating a letter is straightforward. Head to the home page and start typing. You can:</p>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li>Choose from 8 different letter styles (Classic Letter, Book Letter, Elegant Letter, etc.)</li>
+                  <li>Format your text with bold, italic, and more</li>
+                  <li>Add decorative stamps to personalize your letter</li>
+                  <li>Preview your letter before sharing</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                How do I share a letter?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <div class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed space-y-3">
+                <p>Once you've created your letter, click "Share" and we'll generate a unique URL. You can then:</p>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li>Copy the link and send it via any platform (email, chat, social media)</li>
+                  <li>Recipient sees your beautiful letter on Hulak with no login required</li>
+                  <li>Letters are accessible as long as you want them to be</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                Are my letters private?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <div class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed space-y-3">
+                <p>Yes. Letters are meant to be private communications between two people. Only someone with the unique link can see your letter—it's not indexed, not searchable, and not visible to anyone else.</p>
+                <p>The link is the only way to access the letter. Keep it private, and your letter stays private.</p>
+              </div>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                Do you read my letters?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <p class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed">
+                No. Your letters are private. We only access letters when abuse is reported or if we detect CSAM (child sexual abuse material). Otherwise, your letter is only for you and the person you share the link with.
+              </p>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                What data do you store?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <div class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed space-y-3">
+                <p>Only what's necessary:</p>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li><strong>Your name</strong> — to credit you as the letter author</li>
+                  <li><strong>Letter content</strong> — the text, formatting, fonts, and stamps you create</li>
+                </ul>
+                <p class="pt-2">We don't collect IP addresses, browser info, location data, emails, or any other personal information. Letters are stored as-is with no encryption—they're just private.</p>
+              </div>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                Can I delete my letter?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <p class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed">
+                Right now, we don't have user accounts, so you can't delete letters directly. If you need a letter removed, contact <a href="mailto:support@hulak.app" class="text-[var(--blue-energy)] hover:underline font-medium">support@hulak.app</a> with the letter link and we'll delete it for you immediately.
+              </p>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                How long do letters stay live?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <p class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed">
+                Letters remain live indefinitely once shared. Since we don't have user accounts yet, the only way to delete a letter is by contacting our support team. We're working on user accounts in the future so you can manage your own letters.
+              </p>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                Is Hulak free?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <p class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed">
+                Yes! Creating and sharing letters is completely free. We may offer premium features in the future, but the core experience will always be free.
+              </p>
+            </details>
+
+            <details class="group rounded-lg border-2 border-[var(--wheat)] bg-[var(--paper-bg)]/60 p-5 cursor-pointer hover:border-[var(--blue-energy)] transition">
+              <summary class="font-semibold flex justify-between items-center text-[var(--onyx)] text-lg">
+                Still have questions?
+                <span class="text-[var(--blue-energy)] group-open:rotate-180 transition duration-200">⌄</span>
+              </summary>
+              <p class="mt-4 text-base text-[var(--onyx)]/75 leading-relaxed">
+                We'd love to help! Reach out to <a href="mailto:support@hulak.app" class="text-[var(--blue-energy)] hover:underline font-medium">support@hulak.app</a> with any questions or feedback. We read and respond to all emails.
+              </p>
+            </details>
+          </div>
+        </div>
+      </LetterOutline>
+    </div>
+  </main>
+</BaseLayout>

@@ -160,7 +160,7 @@ export default function EnvelopePanel({ quillRef, onNeedLetter }: Props) {
                 [
                   {
                     key: "notifyReceiver" as const,
-                    label: "Notify recipient when letter is opened",
+                    label: "Notify recipient via E-Mail",
                   },
                   {
                     key: "joinMailingList" as const,

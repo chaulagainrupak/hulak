@@ -10,6 +10,11 @@
   --red-stamp: #f45d52;
 }
 
+html, body {
+  scroll-behavior: smooth;
+}
+
+
 .nav-head {
   font-family: "Libre Baskerville", serif;
 }

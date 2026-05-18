@@ -1,0 +1,39 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t-2 border-[var(--wheat)] mt-20 bg-[var(--paper-bg)]/50">
+  <div class="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between gap-8">
+    <div>
+      <h2 class="text-2xl font-semibold text-[var(--onyx)]">Hulak</h2>
+      <p class="text-sm text-[var(--onyx)]/60 mt-2 leading-relaxed">
+        Simple, private letter sharing.
+      </p>
+    </div>
+
+    <div class="flex gap-12 text-sm">
+      <div class="flex flex-col gap-3">
+        <a href="/" class="text-[var(--onyx)]/70 hover:text-[var(--blue-energy)] hover:underline transition">Home</a>
+        <a href="/faq" class="text-[var(--onyx)]/70 hover:text-[var(--blue-energy)] hover:underline transition">FAQ</a>
+        <a href="/privacy" class="text-[var(--onyx)]/70 hover:text-[var(--blue-energy)] hover:underline transition">Privacy</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <a href="mailto:support@hulak.app" class="text-[var(--onyx)]/70 hover:text-[var(--blue-energy)] hover:underline transition">Support</a>
+        <a href="https://github.com" class="text-[var(--onyx)]/70 hover:text-[var(--blue-energy)] hover:underline transition">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t-2 border-[var(--wheat)]">
+    <div class="max-w-5xl mx-auto px-6 py-6 text-xs text-[var(--onyx)]/60 flex flex-col md:flex-row justify-between gap-4">
+      <span>© {year} Hulak. All rights reserved.</span>
+
+      <span class="flex items-center gap-2 font-medium text-[var(--onyx)]/70">
+        Made with
+        <span class="text-white bg-[var(--red-stamp)] px-2 py-0.5 rounded">♥</span>
+        and care in Nepal 🇳🇵
+      </span>
+    </div>
+  </div>
+</footer>

@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import NavigationBar from "../components/NavigationBar.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -56,4 +57,5 @@ const {
       <slot />
     </main>
   </body>
+  <Footer/>
 </html>
