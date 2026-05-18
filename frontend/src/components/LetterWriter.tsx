@@ -39,6 +39,7 @@ export default function LetterWriter() {
 
           {/* Write tab */}
           <button
+            data-umami-event="Tab Click - Write"
             onClick={() => setActiveTab("write")}
             className={`
               flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all
@@ -54,6 +55,7 @@ export default function LetterWriter() {
 
           {/* Envelope tab */}
           <button
+            data-umami-event="Tab Click - Envelope"
             onClick={() => setActiveTab("envelope")}
             className={`
               flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all
@@ -72,6 +74,7 @@ export default function LetterWriter() {
 
           {activeTab === "write" ? (
             <button
+              data-umami-event="Next Button Click - Move to Envelope"
               onClick={() => setActiveTab("envelope")}
               className={`
                 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all

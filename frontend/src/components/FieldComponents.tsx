@@ -32,6 +32,7 @@ export function SenderEmail({
       </div>
       <div className="relative">
         <input
+          data-umami-event="Sender Email Input"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder="you@example.com"
@@ -64,6 +65,7 @@ export function ReceiverEmail({
     <div className="mt-1.5" style={{ minHeight: "2rem" }}>
       {!open ? (
         <button
+          data-umami-event="Receiver Email Toggle"
           onClick={() => setOpen(true)}
           className="
             flex items-center justify-center gap-1.5 w-full
@@ -81,6 +83,7 @@ export function ReceiverEmail({
       ) : (
         <div className="flex items-center gap-1.5">
           <input
+            data-umami-event="Receiver Email Input"
             autoFocus
             value={value}
             onChange={(e) => onChange(e.target.value)}
@@ -94,6 +97,7 @@ export function ReceiverEmail({
           />
           {!value && (
             <button
+              data-umami-event="Cancel Receiver Email"
               onClick={() => setOpen(false)}
               className="text-gray-300 hover:text-gray-500 transition flex-shrink-0"
             >
@@ -130,6 +134,7 @@ export function SendButton({
   return (
     <div className="p-3 border-t border-black/[0.05]">
       <button
+        data-umami-event="Send Letter Button"
         onClick={handleClick}
         disabled={canSend && hasLetter === false ? false : !ready && canSend === false}
         className={`

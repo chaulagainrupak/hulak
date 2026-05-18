@@ -2,11 +2,29 @@
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHeart, faLock, faKey, faMoon, faEye, faStar, faGift, faBolt,
-  faLeaf, faSeedling, faTrophy, faMedal, faDove, faCloud,
-  faCakeCandles, faWandMagicSparkles, faChampagneGlasses,
-  faFeatherPointed, faPaperPlane, faPenNib, faEnvelope,
-  faSpa, faCertificate,
+  faHeart,
+  faLock,
+  faKey,
+  faMoon,
+  faEye,
+  faStar,
+  faGift,
+  faBolt,
+  faLeaf,
+  faSeedling,
+  faTrophy,
+  faMedal,
+  faDove,
+  faCloud,
+  faCakeCandles,
+  faWandMagicSparkles,
+  faChampagneGlasses,
+  faFeatherPointed,
+  faPaperPlane,
+  faPenNib,
+  faEnvelope,
+  faSpa,
+  faCertificate,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faStar as faStarReg,
@@ -15,12 +33,14 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
-
 type DecoIcon = {
   icon: IconDefinition;
-  top?: string; bottom?: string; left?: string; right?: string;
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
   rotate: number;
-  size: number;    // fraction of container width
+  size: number; // fraction of container width
   opacity: number;
 };
 
@@ -73,10 +93,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     bgIcon: faFeatherPointed,
     bgIconColor: "#c8b87a",
     decos: [
-      { icon: faStarReg,        top:"12%", right:"36%", rotate:-12, size:0.038, opacity:0.18 },
-      { icon: faFeatherPointed, bottom:"20%",right:"40%",rotate:20, size:0.042, opacity:0.15 },
-      { icon: faStarReg,        top:"52%", right:"28%", rotate:5,  size:0.030, opacity:0.13 },
-      { icon: faCircleReg,      top:"22%", right:"22%", rotate:0,  size:0.025, opacity:0.10 },
+      {
+        icon: faStarReg,
+        top: "12%",
+        right: "36%",
+        rotate: -12,
+        size: 0.038,
+        opacity: 0.18,
+      },
+      {
+        icon: faFeatherPointed,
+        bottom: "20%",
+        right: "40%",
+        rotate: 20,
+        size: 0.042,
+        opacity: 0.15,
+      },
+      {
+        icon: faStarReg,
+        top: "52%",
+        right: "28%",
+        rotate: 5,
+        size: 0.03,
+        opacity: 0.13,
+      },
+      {
+        icon: faCircleReg,
+        top: "22%",
+        right: "22%",
+        rotate: 0,
+        size: 0.025,
+        opacity: 0.1,
+      },
     ],
   },
 
@@ -100,10 +148,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     rightAccent: "rgba(244,93,82,0.35)",
     stampPosition: "bottom",
     decos: [
-      { icon: faHeart,    top:"10%", right:"38%", rotate:-8,  size:0.048, opacity:0.20 },
-      { icon: faHeartReg, top:"48%", right:"44%", rotate:15,  size:0.036, opacity:0.16 },
-      { icon: faHeart,    bottom:"14%",right:"34%",rotate:5,  size:0.033, opacity:0.14 },
-      { icon: faHeartReg, top:"28%", right:"20%", rotate:-15, size:0.030, opacity:0.12 },
+      {
+        icon: faHeart,
+        top: "10%",
+        right: "38%",
+        rotate: -8,
+        size: 0.048,
+        opacity: 0.2,
+      },
+      {
+        icon: faHeartReg,
+        top: "48%",
+        right: "44%",
+        rotate: 15,
+        size: 0.036,
+        opacity: 0.16,
+      },
+      {
+        icon: faHeart,
+        bottom: "14%",
+        right: "34%",
+        rotate: 5,
+        size: 0.033,
+        opacity: 0.14,
+      },
+      {
+        icon: faHeartReg,
+        top: "28%",
+        right: "20%",
+        rotate: -15,
+        size: 0.03,
+        opacity: 0.12,
+      },
     ],
   },
 
@@ -125,10 +201,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     bgIcon: faLock,
     bgIconColor: "#9080e0",
     decos: [
-      { icon: faLock, top:"10%", right:"38%", rotate:-5, size:0.039, opacity:0.16 },
-      { icon: faMoon, top:"45%", right:"42%", rotate:12, size:0.039, opacity:0.14 },
-      { icon: faKey,  bottom:"18%",right:"36%",rotate:30,size:0.042, opacity:0.14 },
-      { icon: faEye,  top:"24%", right:"22%", rotate:0,  size:0.033, opacity:0.12 },
+      {
+        icon: faLock,
+        top: "10%",
+        right: "38%",
+        rotate: -5,
+        size: 0.039,
+        opacity: 0.16,
+      },
+      {
+        icon: faMoon,
+        top: "45%",
+        right: "42%",
+        rotate: 12,
+        size: 0.039,
+        opacity: 0.14,
+      },
+      {
+        icon: faKey,
+        bottom: "18%",
+        right: "36%",
+        rotate: 30,
+        size: 0.042,
+        opacity: 0.14,
+      },
+      {
+        icon: faEye,
+        top: "24%",
+        right: "22%",
+        rotate: 0,
+        size: 0.033,
+        opacity: 0.12,
+      },
     ],
   },
 
@@ -152,10 +256,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     rightAccent: "rgba(217,119,6,0.25)",
     stampPosition: "center",
     decos: [
-      { icon: faStar,    top:"8%",  right:"42%", rotate:15,  size:0.045, opacity:0.18 },
-      { icon: faBolt,    top:"42%", right:"36%", rotate:-10, size:0.039, opacity:0.15 },
-      { icon: faGift,    bottom:"14%",right:"40%",rotate:-5, size:0.042, opacity:0.15 },
-      { icon: faStarReg, top:"22%", right:"22%", rotate:35,  size:0.030, opacity:0.12 },
+      {
+        icon: faStar,
+        top: "8%",
+        right: "42%",
+        rotate: 15,
+        size: 0.045,
+        opacity: 0.18,
+      },
+      {
+        icon: faBolt,
+        top: "42%",
+        right: "36%",
+        rotate: -10,
+        size: 0.039,
+        opacity: 0.15,
+      },
+      {
+        icon: faGift,
+        bottom: "14%",
+        right: "40%",
+        rotate: -5,
+        size: 0.042,
+        opacity: 0.15,
+      },
+      {
+        icon: faStarReg,
+        top: "22%",
+        right: "22%",
+        rotate: 35,
+        size: 0.03,
+        opacity: 0.12,
+      },
     ],
   },
 
@@ -178,10 +310,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     bgIconColor: "#b09af0",
     rightAccent: "rgba(124,58,237,0.22)",
     decos: [
-      { icon: faPaperPlane, top:"10%", right:"40%", rotate:-15, size:0.042, opacity:0.17 },
-      { icon: faCloud,      top:"46%", right:"44%", rotate:5,   size:0.039, opacity:0.14 },
-      { icon: faPaperPlane, bottom:"16%",right:"36%",rotate:20, size:0.033, opacity:0.13 },
-      { icon: faStarReg,    top:"26%", right:"20%", rotate:-5,  size:0.030, opacity:0.11 },
+      {
+        icon: faPaperPlane,
+        top: "10%",
+        right: "40%",
+        rotate: -15,
+        size: 0.042,
+        opacity: 0.17,
+      },
+      {
+        icon: faCloud,
+        top: "46%",
+        right: "44%",
+        rotate: 5,
+        size: 0.039,
+        opacity: 0.14,
+      },
+      {
+        icon: faPaperPlane,
+        bottom: "16%",
+        right: "36%",
+        rotate: 20,
+        size: 0.033,
+        opacity: 0.13,
+      },
+      {
+        icon: faStarReg,
+        top: "26%",
+        right: "20%",
+        rotate: -5,
+        size: 0.03,
+        opacity: 0.11,
+      },
     ],
   },
 
@@ -205,10 +365,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     rightAccent: "rgba(5,150,105,0.2)",
     stampPosition: "bottom",
     decos: [
-      { icon: faLeaf,     top:"10%", right:"40%", rotate:-15, size:0.042, opacity:0.17 },
-      { icon: faSeedling, top:"46%", right:"36%", rotate:10,  size:0.039, opacity:0.15 },
-      { icon: faDove,     bottom:"16%",right:"42%",rotate:-5, size:0.042, opacity:0.14 },
-      { icon: faLeaf,     top:"24%", right:"22%", rotate:25,  size:0.030, opacity:0.12 },
+      {
+        icon: faLeaf,
+        top: "10%",
+        right: "40%",
+        rotate: -15,
+        size: 0.042,
+        opacity: 0.17,
+      },
+      {
+        icon: faSeedling,
+        top: "46%",
+        right: "36%",
+        rotate: 10,
+        size: 0.039,
+        opacity: 0.15,
+      },
+      {
+        icon: faDove,
+        bottom: "16%",
+        right: "42%",
+        rotate: -5,
+        size: 0.042,
+        opacity: 0.14,
+      },
+      {
+        icon: faLeaf,
+        top: "24%",
+        right: "22%",
+        rotate: 25,
+        size: 0.03,
+        opacity: 0.12,
+      },
     ],
   },
 
@@ -231,10 +419,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     bgIconColor: "#f9a8d4",
     rightAccent: "rgba(219,39,119,0.3)",
     decos: [
-      { icon: faStar,             top:"8%",  right:"44%", rotate:15,  size:0.045, opacity:0.19 },
-      { icon: faChampagneGlasses, top:"44%", right:"38%", rotate:-8,  size:0.045, opacity:0.16 },
-      { icon: faCertificate,      bottom:"14%",right:"42%",rotate:5,  size:0.042, opacity:0.15 },
-      { icon: faWandMagicSparkles,top:"24%", right:"22%", rotate:20,  size:0.036, opacity:0.14 },
+      {
+        icon: faStar,
+        top: "8%",
+        right: "44%",
+        rotate: 15,
+        size: 0.045,
+        opacity: 0.19,
+      },
+      {
+        icon: faChampagneGlasses,
+        top: "44%",
+        right: "38%",
+        rotate: -8,
+        size: 0.045,
+        opacity: 0.16,
+      },
+      {
+        icon: faCertificate,
+        bottom: "14%",
+        right: "42%",
+        rotate: 5,
+        size: 0.042,
+        opacity: 0.15,
+      },
+      {
+        icon: faWandMagicSparkles,
+        top: "24%",
+        right: "22%",
+        rotate: 20,
+        size: 0.036,
+        opacity: 0.14,
+      },
     ],
   },
 
@@ -258,10 +474,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     rightAccent: "rgba(202,138,4,0.28)",
     stampPosition: "center",
     decos: [
-      { icon: faChampagneGlasses, top:"10%", right:"42%", rotate:-5,  size:0.048, opacity:0.18 },
-      { icon: faMedal,            top:"46%", right:"36%", rotate:10,  size:0.042, opacity:0.15 },
-      { icon: faStar,             bottom:"14%",right:"40%",rotate:-18,size:0.039, opacity:0.14 },
-      { icon: faWandMagicSparkles,top:"26%", right:"20%", rotate:20,  size:0.036, opacity:0.13 },
+      {
+        icon: faChampagneGlasses,
+        top: "10%",
+        right: "42%",
+        rotate: -5,
+        size: 0.048,
+        opacity: 0.18,
+      },
+      {
+        icon: faMedal,
+        top: "46%",
+        right: "36%",
+        rotate: 10,
+        size: 0.042,
+        opacity: 0.15,
+      },
+      {
+        icon: faStar,
+        bottom: "14%",
+        right: "40%",
+        rotate: -18,
+        size: 0.039,
+        opacity: 0.14,
+      },
+      {
+        icon: faWandMagicSparkles,
+        top: "26%",
+        right: "20%",
+        rotate: 20,
+        size: 0.036,
+        opacity: 0.13,
+      },
     ],
   },
 
@@ -283,10 +527,38 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     bgIcon: faDove,
     bgIconColor: "#94a3b8",
     decos: [
-      { icon: faDove,      top:"10%", right:"40%", rotate:-5, size:0.042, opacity:0.15 },
-      { icon: faCircleReg, top:"48%", right:"42%", rotate:0,  size:0.033, opacity:0.12 },
-      { icon: faDove,      bottom:"18%",right:"38%",rotate:8, size:0.036, opacity:0.12 },
-      { icon: faCircleReg, top:"28%", right:"22%", rotate:0,  size:0.025, opacity:0.09 },
+      {
+        icon: faDove,
+        top: "10%",
+        right: "40%",
+        rotate: -5,
+        size: 0.042,
+        opacity: 0.15,
+      },
+      {
+        icon: faCircleReg,
+        top: "48%",
+        right: "42%",
+        rotate: 0,
+        size: 0.033,
+        opacity: 0.12,
+      },
+      {
+        icon: faDove,
+        bottom: "18%",
+        right: "38%",
+        rotate: 8,
+        size: 0.036,
+        opacity: 0.12,
+      },
+      {
+        icon: faCircleReg,
+        top: "28%",
+        right: "22%",
+        rotate: 0,
+        size: 0.025,
+        opacity: 0.09,
+      },
     ],
   },
 
@@ -310,14 +582,41 @@ export const OCCASION_THEMES: Record<string, ThemeConfig> = {
     rightAccent: "rgba(13,148,136,0.2)",
     stampPosition: "bottom",
     decos: [
-      { icon: faSpa,     top:"10%", right:"40%", rotate:-10, size:0.042, opacity:0.17 },
-      { icon: faStarReg, top:"46%", right:"36%", rotate:15,  size:0.036, opacity:0.14 },
-      { icon: faSpa,     bottom:"16%",right:"44%",rotate:20, size:0.033, opacity:0.13 },
-      { icon: faStar,    top:"26%", right:"20%", rotate:-5,  size:0.030, opacity:0.12 },
+      {
+        icon: faSpa,
+        top: "10%",
+        right: "40%",
+        rotate: -10,
+        size: 0.042,
+        opacity: 0.17,
+      },
+      {
+        icon: faStarReg,
+        top: "46%",
+        right: "36%",
+        rotate: 15,
+        size: 0.036,
+        opacity: 0.14,
+      },
+      {
+        icon: faSpa,
+        bottom: "16%",
+        right: "44%",
+        rotate: 20,
+        size: 0.033,
+        opacity: 0.13,
+      },
+      {
+        icon: faStar,
+        top: "26%",
+        right: "20%",
+        rotate: -5,
+        size: 0.03,
+        opacity: 0.12,
+      },
     ],
   },
 };
-
 
 type EnvelopePreviewProps = {
   senderName: string;
@@ -329,8 +628,28 @@ type EnvelopePreviewProps = {
 };
 
 export default function EnvelopePreview({
-  senderName, receiverName, occasion, customOccasionLabel, stampUrl, stampLabel,
+  senderName,
+  receiverName,
+  occasion,
+  customOccasionLabel,
+  stampUrl,
+  stampLabel,
 }: EnvelopePreviewProps) {
+  const [stampRatio, setStampRatio] = useState(0.75);
+
+  useEffect(() => {
+    if (!stampUrl) return;
+
+    const img = new Image();
+    img.src = stampUrl;
+
+    img.onload = () => {
+      if (img.naturalWidth && img.naturalHeight) {
+        setStampRatio(img.naturalWidth / img.naturalHeight);
+      }
+    };
+  }, [stampUrl]);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [w, setW] = useState(400);
 
@@ -346,37 +665,50 @@ export default function EnvelopePreview({
   const theme = OCCASION_THEMES[occasion] ?? OCCASION_THEMES["Just because"];
 
   const displayOccasion =
-    occasion === "Just because" && customOccasionLabel ? customOccasionLabel : occasion;
+    occasion === "Just because" && customOccasionLabel
+      ? customOccasionLabel
+      : occasion;
 
   const displayReceiver = receiverName || "Jane Doe";
-  const displaySender   = senderName   || "John Doe";
+  const displaySender = senderName || "John Doe";
 
   // All sizes scale with container width
   const px = (frac: number) => `${w * frac}px`;
 
-  // Stamp: ratio from the uploaded image is ~1:1.35 (width:height)
-  const stampW    = w * 0.100;           // 10% of container width
-  const stampH    = stampW * 1.35;       // maintain 1:1.35 ratio
+  const base = w * 0.1;
 
-  const toSize    = px(0.080);
-  const fromSize  = px(0.044);
+  const stampW = Math.min(
+    Math.max(base * (stampRatio > 1 ? stampRatio : 1), w * 0.08),
+    w * 0.24,
+  );
+
+  const stampH = stampW / stampRatio;
+
+  const toSize = px(0.08);
+  const fromSize = px(0.044);
   const labelSize = px(0.019);
-  const tagSize   = px(0.018);
+  const tagSize = px(0.018);
   const tagIconSz = px(0.016);
-  const bgIconSz  = px(0.17);
-  const pmDiam    = px(0.070);
-  const pmTextSz  = px(0.013);
-  const pad       = px(0.040);
-  const colGap    = px(0.028);
-  const accentW   = Math.max(2, w * 0.004);
+  const bgIconSz = px(0.17);
+  const pmDiam = px(0.07);
+  const pmTextSz = px(0.013);
+  const pad = px(0.04);
+  const colGap = px(0.028);
+  const accentW = Math.max(2, w * 0.004);
 
   const layoutAlign =
-    theme.layout === "top-left"    ? "justify-start" :
-    theme.layout === "center-left" ? "justify-center" : "justify-end";
+    theme.layout === "top-left"
+      ? "justify-start"
+      : theme.layout === "center-left"
+        ? "justify-center"
+        : "justify-end";
 
   const stampAlign =
-    theme.stampPosition === "bottom"  ? "items-end" :
-    theme.stampPosition === "center"  ? "items-center" : "items-start";
+    theme.stampPosition === "bottom"
+      ? "items-end"
+      : theme.stampPosition === "center"
+        ? "items-center"
+        : "items-start";
 
   return (
     <div
@@ -385,91 +717,172 @@ export default function EnvelopePreview({
       style={{ background: theme.bg, border: `1px solid ${theme.border}` }}
     >
       {/* watermark icon */}
-      <div className="absolute pointer-events-none select-none"
-        style={{ right: "-3%", bottom: "-10%", fontSize: bgIconSz,
-          color: theme.bgIconColor, opacity: 0.20, lineHeight: 1, zIndex: 0 }}>
+      <div
+        className="absolute pointer-events-none select-none"
+        style={{
+          right: "-3%",
+          bottom: "-10%",
+          fontSize: bgIconSz,
+          color: theme.bgIconColor,
+          opacity: 0.2,
+          lineHeight: 1,
+          zIndex: 0,
+        }}
+      >
         <FontAwesomeIcon icon={theme.bgIcon} />
       </div>
 
       {/* right accent */}
       {theme.rightAccent && (
-        <div className="absolute pointer-events-none"
-          style={{ top: "10%", right: 0, width: accentW, height: "80%",
-            borderRadius: "2px 0 0 2px", background: theme.rightAccent, zIndex: 4 }} />
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            top: "10%",
+            right: 0,
+            width: accentW,
+            height: "80%",
+            borderRadius: "2px 0 0 2px",
+            background: theme.rightAccent,
+            zIndex: 4,
+          }}
+        />
       )}
 
       {/* deco icons */}
       {theme.decos.map((d, i) => (
-        <div key={i} className="absolute pointer-events-none select-none"
-          style={{ top: d.top, bottom: d.bottom, left: d.left, right: d.right,
-            fontSize: px(d.size), color: theme.bgIconColor, opacity: d.opacity,
-            transform: `rotate(${d.rotate}deg)`, zIndex: 2, lineHeight: 1 }}>
+        <div
+          key={i}
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: d.top,
+            bottom: d.bottom,
+            left: d.left,
+            right: d.right,
+            fontSize: px(d.size),
+            color: theme.bgIconColor,
+            opacity: d.opacity,
+            transform: `rotate(${d.rotate}deg)`,
+            zIndex: 2,
+            lineHeight: 1,
+          }}
+        >
           <FontAwesomeIcon icon={d.icon} />
         </div>
       ))}
 
       {/* layout */}
-      <div className="relative h-full flex" style={{ zIndex: 3, padding: pad, gap: colGap }}>
-
+      <div
+        className="relative h-full flex"
+        style={{ zIndex: 3, padding: pad, gap: colGap }}
+      >
         {/* address column */}
-        <div className="flex-1 min-w-0 border-r flex flex-col overflow-hidden"
-          style={{ borderColor: theme.border, paddingRight: colGap }}>
+        <div
+  className="flex-1 min-w-0 border-r flex flex-col overflow-hidden"
+  style={{ minWidth: 0, borderColor: theme.border, paddingRight: colGap }}
+>
           <div className={`flex flex-col h-full ${layoutAlign}`}>
-
             {/* TO */}
             <div style={{ marginBottom: px(0.005) }}>
-              <p className="flex items-center uppercase font-semibold"
-                style={{ color: theme.labelColor, fontFamily: theme.labelFont,
-                  fontSize: labelSize, letterSpacing: "0.16em",
-                  marginBottom: px(0.003), gap: px(0.007), opacity: 0.8 }}>
-                <FontAwesomeIcon icon={faEnvelope} style={{ fontSize: labelSize }} />
+              <p
+                className="flex items-center uppercase font-semibold"
+                style={{
+                  color: theme.labelColor,
+                  fontFamily: theme.labelFont,
+                  fontSize: labelSize,
+                  letterSpacing: "0.16em",
+                  marginBottom: px(0.003),
+                  gap: px(0.007),
+                  opacity: 0.8,
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  style={{ fontSize: labelSize }}
+                />
                 to
               </p>
-              <p className="leading-none truncate"
+              <p
+                className="leading-none truncate"
                 style={{
-                  color: theme.toColor, fontFamily: theme.toFont,
-                  fontSize: toSize, letterSpacing: "-0.02em", fontWeight: 700,
+                  color: theme.toColor,
+                  fontFamily: theme.toFont,
+                  fontSize: toSize,
+                  letterSpacing: "-0.02em",
+                  fontWeight: 700,
                   opacity: receiverName ? 1 : 0.35,
-                }}>
+                }}
+              >
                 {displayReceiver}
               </p>
             </div>
 
             {/* FROM */}
             <div style={{ marginBottom: px(0.014) }}>
-              <p className="flex items-center uppercase font-semibold"
-                style={{ color: theme.labelColor, fontFamily: theme.labelFont,
-                  fontSize: labelSize, letterSpacing: "0.16em",
-                  marginBottom: px(0.003), gap: px(0.007), opacity: 0.7 }}>
-                <FontAwesomeIcon icon={faPenNib} style={{ fontSize: labelSize }} />
+              <p
+                className="flex items-center uppercase font-semibold"
+                style={{
+                  color: theme.labelColor,
+                  fontFamily: theme.labelFont,
+                  fontSize: labelSize,
+                  letterSpacing: "0.16em",
+                  marginBottom: px(0.003),
+                  gap: px(0.007),
+                  opacity: 0.7,
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faPenNib}
+                  style={{ fontSize: labelSize }}
+                />
                 from
               </p>
-              <p className="leading-none truncate"
+              <p
+                className="leading-none truncate"
                 style={{
-                  color: theme.fromColor, fontFamily: theme.fromFont,
-                  fontSize: fromSize, letterSpacing: "0.01em",
-                  fontWeight: 600, fontStyle: "italic",
+                  color: theme.fromColor,
+                  fontFamily: theme.fromFont,
+                  fontSize: fromSize,
+                  letterSpacing: "0.01em",
+                  fontWeight: 600,
+                  fontStyle: "italic",
                   opacity: senderName ? 1 : 0.35,
-                }}>
+                }}
+              >
                 {displaySender}
               </p>
             </div>
 
             {/* occasion pill */}
-            <span className="inline-flex items-center rounded-full border font-semibold w-fit"
-              style={{ color: theme.tagColor, borderColor: theme.tagBorder,
-                background: theme.tagBg, fontFamily: theme.tagFont,
-                fontSize: tagSize, letterSpacing: "0.10em",
-                padding: `${px(0.007)} ${px(0.015)}`, gap: px(0.007) }}>
-              <FontAwesomeIcon icon={theme.bgIcon} style={{ fontSize: tagIconSz }} />
+            <span
+              className="inline-flex items-center rounded-full border font-semibold w-fit"
+              style={{
+                color: theme.tagColor,
+                borderColor: theme.tagBorder,
+                background: theme.tagBg,
+                fontFamily: theme.tagFont,
+                fontSize: tagSize,
+                letterSpacing: "0.10em",
+                padding: `${px(0.007)} ${px(0.015)}`,
+                gap: px(0.007),
+              }}
+            >
+              <FontAwesomeIcon
+                icon={theme.bgIcon}
+                style={{ fontSize: tagIconSz }}
+              />
               {displayOccasion}
             </span>
           </div>
         </div>
 
         {/* stamp column */}
-        <div className={`flex flex-col ${stampAlign} justify-center flex-shrink-0`}
-          style={{ width: `${stampW}px` }}>
+        <div
+          className={`flex flex-col ${stampAlign} justify-center flex-shrink-0`}
+          style={{
+            width: `${stampW}px`,
+            minWidth: `${stampW}px`,
+          }}
+        >
           {stampUrl ? (
             <img
               src={stampUrl}
@@ -477,22 +890,42 @@ export default function EnvelopePreview({
               style={{
                 width: `${stampW}px`,
                 height: `${stampH}px`,
-                objectFit: "cover",
+                objectFit: "contain",
                 borderRadius: `${w * 0.008}px`,
                 display: "block",
               }}
             />
           ) : (
-            <div className="relative flex flex-col items-center justify-center rounded border-2"
-              style={{ width: `${stampW}px`, height: `${stampH}px`,
-                borderColor: theme.tagBorder, background: theme.tagBg }}>
-              <div className="absolute inset-[3px] rounded border border-dashed opacity-40 pointer-events-none"
-                style={{ borderColor: theme.tagColor }} />
-              <FontAwesomeIcon icon={theme.bgIcon}
-                style={{ color: theme.tagColor, fontSize: px(0.042), opacity: 0.7 }} />
-              <span className="tracking-wider uppercase font-bold opacity-50 text-center leading-tight"
-                style={{ color: theme.tagColor, fontFamily: theme.tagFont,
-                  fontSize: px(0.014), marginTop: px(0.005) }}>
+            <div
+              className="relative flex flex-col items-center justify-center rounded border-2"
+              style={{
+                width: `${stampW}px`,
+                height: `${stampH}px`,
+                borderColor: theme.tagBorder,
+                background: theme.tagBg,
+              }}
+            >
+              <div
+                className="absolute inset-[3px] rounded border border-dashed opacity-40 pointer-events-none"
+                style={{ borderColor: theme.tagColor }}
+              />
+              <FontAwesomeIcon
+                icon={theme.bgIcon}
+                style={{
+                  color: theme.tagColor,
+                  fontSize: px(0.042),
+                  opacity: 0.7,
+                }}
+              />
+              <span
+                className="tracking-wider uppercase font-bold opacity-50 text-center leading-tight"
+                style={{
+                  color: theme.tagColor,
+                  fontFamily: theme.tagFont,
+                  fontSize: px(0.014),
+                  marginTop: px(0.005),
+                }}
+              >
                 {occasion.split(" ")[0]}
               </span>
             </div>
@@ -501,16 +934,35 @@ export default function EnvelopePreview({
       </div>
 
       {/* postmark */}
-      <div className="absolute pointer-events-none"
-        style={{ top: "50%", left: "68%", transform: "translate(-50%,-50%)", zIndex: 3 }}>
-        <div style={{ color: theme.postmarkColor, opacity: 0.16 }}
-          className="flex flex-col items-center">
-          <div className="rounded-md border flex items-center justify-center"
-            style={{ width: pmDiam, height: pmDiam,
-              borderColor: "currentColor", borderWidth: Math.max(1, w * 0.003) }}>
-            <span className="tracking-widest uppercase text-center leading-tight font-bold"
-              style={{ fontSize: pmTextSz, fontFamily: theme.tagFont }}>
-              हुलाक<br />POST
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "50%",
+          left: "68%",
+          transform: "translate(-50%,-50%)",
+          zIndex: 3,
+        }}
+      >
+        <div
+          style={{ color: theme.postmarkColor, opacity: 0.16 }}
+          className="flex flex-col items-center"
+        >
+          <div
+            className="rounded-md border flex items-center justify-center"
+            style={{
+              width: pmDiam,
+              height: pmDiam,
+              borderColor: "currentColor",
+              borderWidth: Math.max(1, w * 0.003),
+            }}
+          >
+            <span
+              className="tracking-widest uppercase text-center leading-tight font-bold"
+              style={{ fontSize: pmTextSz, fontFamily: theme.tagFont }}
+            >
+              हुलाक
+              <br />
+              POST
             </span>
           </div>
         </div>

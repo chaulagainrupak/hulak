@@ -89,6 +89,7 @@ export default function EnvelopePanel({ quillRef, onNeedLetter }: Props) {
                 <div className="p-2 flex flex-col gap-1">
                   <FieldLabel>From</FieldLabel>
                   <input
+                    data-umami-event="Sender Name Input"
                     value={envelope.senderName}
                     onChange={(e) =>
                       set("senderName", e.target.value.slice(0, 40))
@@ -106,6 +107,7 @@ export default function EnvelopePanel({ quillRef, onNeedLetter }: Props) {
                 <div className="p-2 flex flex-col gap-1">
                   <FieldLabel>To</FieldLabel>
                   <input
+                    data-umami-event="Receiver Name Input"
                     value={envelope.receiverName}
                     onChange={(e) =>
                       set("receiverName", e.target.value.slice(0, 40))
@@ -139,6 +141,7 @@ export default function EnvelopePanel({ quillRef, onNeedLetter }: Props) {
                 {OCCASIONS.map((o) => (
                   <button
                     key={o}
+                    data-umami-event="Occasion Selection"
                     onClick={() => set("occasion", o)}
                     className={`px-2 py-0.5 rounded-md text-[11px] font-medium border transition ${
                       envelope.occasion === o
@@ -168,6 +171,7 @@ export default function EnvelopePanel({ quillRef, onNeedLetter }: Props) {
                 <label
                   key={key}
                   className="flex items-center gap-2 cursor-pointer"
+                  data-umami-event={key === "notifyReceiver" ? "Checkbox - Notify Receiver" : "Checkbox - Join Mailing List"}
                   onClick={() => set(key, !envelope[key])}
                 >
                   <div

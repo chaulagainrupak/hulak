@@ -51,7 +51,6 @@ export default function SuccessDialog({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header — success green tint */}
         <div
           className="flex items-center justify-between px-5 py-4"
           style={{
@@ -72,15 +71,17 @@ export default function SuccessDialog({
               Letter Posted!
             </span>
           </div>
+
           <button
+            data-umami-event="Close Success Dialog"
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center rounded-lg transition text-gray-400 hover:text-gray-600 hover:bg-black/5"
           >
             <i className="ph ph-x text-base" />
           </button>
         </div>
+
         <div className="p-5 flex flex-col gap-4">
-          {/* Envelope preview */}
           <LetterOutline
             className="w-full"
             paperClassName="w-full aspect-[2.4/1] rounded-xl overflow-hidden"
@@ -95,7 +96,6 @@ export default function SuccessDialog({
             />
           </LetterOutline>
 
-          {/* Success message */}
           <div
             className="rounded-lg px-4 py-3 flex items-start gap-3"
             style={{
@@ -109,23 +109,18 @@ export default function SuccessDialog({
             />
             <div>
               <p className="text-sm font-semibold text-gray-700">
-                Your letter is on its way to {receiverName || "them"}.
+                Your letter for {receiverName || "them"} is ready.
               </p>
-              <p className="text-xs text-gray-400 mt-0.5">
-                Share the link below so they can open it.
+              <p className="text-xs text-gray-500 mt-1">
+                Copy the link below and send it to them so they can open it.
               </p>
             </div>
           </div>
 
-          {/* Share link */}
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-1.5">
-              <i
-                className="ph ph-link text-sm"
-                style={{ color: "var(--blue-energy)", opacity: 0.8 }}
-              />
+            <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                Share link
+                Recipient link
               </span>
             </div>
 
@@ -148,23 +143,28 @@ export default function SuccessDialog({
               </div>
 
               <button
+                data-umami-event="Copy Link"
                 onClick={handleCopy}
                 className={`
-      flex items-center justify-center w-16 text-xs py-2.5 font-semibold transition-all flex-shrink-0 border-l
-      ${
-        copied
-          ? "bg-green-50 text-green-600 border-green-200"
-          : "text-gray-500 border-black/10 hover:text-[var(--blue-energy)] hover:bg-[var(--blue-energy)]/5"
-      }
-    `}
+                  flex items-center justify-center w-20 text-xs py-2.5 font-semibold transition-all flex-shrink-0 border-l
+                  ${
+                    copied
+                      ? "bg-green-50 text-green-600 border-green-200"
+                      : "text-gray-500 border-black/10 hover:text-[var(--blue-energy)] hover:bg-[var(--blue-energy)]/5"
+                  }
+                `}
               >
-                {copied ? "Copied!" : "Copy"}
+                {copied ? "Copied ✓" : "Copy"}
               </button>
             </div>
+
+            <p className="text-[11px] text-gray-500">
+              This link is required for {receiverName || "them"} to open the letter.
+            </p>
           </div>
 
-          {/* Done button */}
           <button
+            data-umami-event="Success Dialog Done Button"
             onClick={onClose}
             className="
               w-full flex items-center justify-center gap-2

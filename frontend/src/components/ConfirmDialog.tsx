@@ -264,6 +264,7 @@ export default function ConfirmDialog({
             </span>
           </div>
           <button
+            data-umami-event="Close Confirm Dialog"
             onClick={onClose}
             disabled={loading}
             className="w-8 h-8 flex items-center justify-center rounded-lg transition text-gray-400 hover:text-gray-600 hover:bg-black/5 disabled:opacity-40"
@@ -313,6 +314,7 @@ export default function ConfirmDialog({
                 hulak.app/open/
               </span>
               <input
+                data-umami-event="Slug Input"
                 value={slug}
                 onChange={(e) => handleSlugChange(e.target.value)}
                 placeholder="leave blank to auto-generate"
@@ -339,6 +341,7 @@ export default function ConfirmDialog({
                   {shareUrl}
                 </p>
                 <button
+                  data-umami-event="Copy Share Link"
                   onClick={handleCopy}
                   className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-md font-medium transition-all flex-shrink-0 ${
                     copied
@@ -379,6 +382,7 @@ export default function ConfirmDialog({
           <div className="flex gap-2.5 pt-1">
             {!loading ? (
               <button
+                data-umami-event="Cancel Confirm Dialog"
                 onClick={onClose}
                 disabled={loading}
                 className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-md font-semibold text-sm transition-all border border-gray-200 hover:bg-amber-100 disabled:opacity-40"
@@ -388,6 +392,7 @@ export default function ConfirmDialog({
               </button>
             ) : null}
             <button
+              data-umami-event="Post Letter Button"
               onClick={handleConfirm}
               disabled={!!slugError || loading || disabled}
               className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-md font-semibold text-sm transition-all ${
