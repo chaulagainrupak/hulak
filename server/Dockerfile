@@ -5,7 +5,6 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# System deps (Playwright needs these for Chromium)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     gcc \
@@ -22,13 +21,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgbm1 \
     libasound2 \
     libxshmfence1 \
+    libpango-1.0-0 \
+    libcairo2 \
+    libx11-6 \
+    libxcb1 \
+    libexpat1 \
+    libfontconfig1 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install Playwright + browsers 
 RUN pip install playwright
-RUN playwright install --with-deps
+RUN python -m playwright install chromium
 
 COPY src /app/src
 
