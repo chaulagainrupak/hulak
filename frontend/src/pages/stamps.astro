@@ -2,6 +2,7 @@
 export const prerender = false;
 import { LetterOutline } from "../components/AirMailBorder";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import StampModal from "../components/StampModal";
 
 const API_URL = import.meta.env.PUBLIC_API_URL;
 
@@ -10,6 +11,7 @@ type Stamp = {
   label: string;
   image_url: string;
   category?: string;
+  description?: string;
   author?: string;
   author_source_link?: string;
 };
@@ -17,8 +19,9 @@ type Stamp = {
 const res = await fetch(`${API_URL}/stamps`);
 const data: Record<string, Stamp> = await res.json();
 const stamps: Stamp[] = Object.values(data);
+
 const categories = Array.from(
-  new Set(stamps.map((s) => s.category || "other")),
+  new Set(stamps.map((s) => s.category || "other"))
 );
 ---
 
@@ -26,102 +29,63 @@ const categories = Array.from(
   <div class="max-w-5xl mx-auto px-4 py-6">
     <LetterOutline>
       <div class="p-6 flex flex-col gap-5">
+
         <div class="mb-2">
           <h1 class="text-2xl font-semibold tracking-tight">Stamps</h1>
           <p class="text-sm text-gray-500 mt-1">Compact postal archive</p>
         </div>
 
         <span class="text-sm text-gray-600">Filter By Category</span>
+
         <div class="flex gap-2 overflow-x-auto pb-2">
-          {
-            categories.map((cat) => (
-              <a
-                href={`#${cat}`}
-                data-umami-event="Stamps Category Filter"
-                class="px-3 py-1 text-sm whitespace-nowrap rounded-full border border-black/10 text-gray-600 hover:bg-black hover:text-white transition"
-              >
-                {cat}
-              </a>
-            ))
-          }
+          {categories.map((cat) => (
+            <a
+              href={`#${cat}`}
+              class="px-3 py-1 text-sm whitespace-nowrap rounded-full border border-black/10 text-gray-600 hover:bg-black hover:text-white transition"
+            >
+              {cat}
+            </a>
+          ))}
         </div>
 
         <div class="flex flex-col gap-6">
-          {
-            categories.map((cat) => (
-              <section id={cat} class="scroll-mt-24">
-                <div class="flex items-center gap-2 mb-3">
-                  <span class="text-sm uppercase tracking-widest text-gray-500">
-                    {cat}
-                  </span>
-                </div>
-                <div class="flex flex-wrap gap-3">
-                  {stamps
-                    .filter((s) => (s.category || "other") === cat)
-                    .map((stamp) => (
-                      <a
-                        href={stamp.author_source_link || "#"}
-                        target="_blank"
-                        data-umami-event="Stamp Artist Link Click"
-                        class="group flex flex-col items-center"
+          {categories.map((cat) => (
+            <section id={cat} class="scroll-mt-24">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-sm uppercase tracking-widest text-gray-500">
+                  {cat}
+                </span>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                {stamps
+                  .filter((s) => (s.category || "other") === cat)
+                  .map((stamp) => (
+                    <button
+                      type="button"
+                      class="group flex flex-col items-center"
+                      data-stamp-id={stamp.id}
+                    >
+                      <div
+                        class="bg-white border border-black/10 rounded-md overflow-hidden flex items-center justify-center hover:shadow-sm transition"
+                        style="width:42px; height:58px;"
                       >
-                        <div
-                          data-stamp-wrap
-                          class="bg-white border border-black/10 rounded-md overflow-hidden flex items-center justify-center hover:shadow-sm transition"
-                          style="width:42px; height:58px;"
-                        >
-                          <img
-                            src={stamp.image_url}
-                            alt={stamp.label}
-                            data-stamp-img
-                            class="w-full h-full object-contain group-hover:scale-105 transition duration-150"
-                            loading="lazy"
-                          />
-                        </div>
-                      </a>
-                    ))}
-                </div>
-              </section>
-            ))
-          }
+                        <img
+                          src={stamp.image_url}
+                          alt={stamp.label}
+                          class="w-full h-full object-contain group-hover:scale-105 transition"
+                          loading="lazy"
+                        />
+                      </div>
+                    </button>
+                  ))}
+              </div>
+            </section>
+          ))}
         </div>
       </div>
     </LetterOutline>
   </div>
+
+  <StampModal client:load stamps={stamps} />
 </BaseLayout>
-
-<script>
-  function adaptStamps() {
-    document
-      .querySelectorAll<HTMLElement>("[data-stamp-wrap]")
-      .forEach((wrap) => {
-        const img = wrap.querySelector<HTMLImageElement>("[data-stamp-img]");
-        if (!img) return;
-
-        const apply = () => {
-          const { naturalWidth: nw, naturalHeight: nh } = img;
-          if (!nw || !nh) return;
-          const ratio = nw / nh;
-          if (ratio >= 1) {
-            wrap.style.width = `${Math.min(Math.round(58 * ratio), 96)}px`;
-            wrap.style.height = "58px";
-          } else {
-            wrap.style.width = "42px";
-            wrap.style.height = "58px";
-          }
-        };
-
-        if (img.complete && img.naturalWidth) {
-          apply();
-        } else {
-          img.addEventListener("load", apply, { once: true });
-        }
-      });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", adaptStamps);
-  } else {
-    adaptStamps();
-  }
-</script>
